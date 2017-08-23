@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { View } from 'react-native'
+import Realm from '../configs/realm'
 
-class Splash extends Component {
-    componentDidMount() {
-        
+class Home extends Component {
+    componentWillMount() {
+    
     }
+
     render() {
         return (
             <View >
@@ -13,8 +15,11 @@ class Splash extends Component {
             </View>
         )
     }
-}
+    
+    componentDidMount() {
 
+    }
+}
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -26,4 +31,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         // showSnackBar: (data) => dispatch(showSnackBar(data))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Splash)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -1,6 +1,4 @@
 const INITIAL = {
-    snaskBars: [],
-    toasts: []
 };
 
 export default (state = INITIAL, action) => {

@@ -12,7 +12,7 @@ export default () => {
   const store = createStore(reducers, applyMiddleware(thunk))
   return (
     <Provider store={store}>
-        <Navigation/>
+      <Navigation />
     </Provider>
   );
 }
