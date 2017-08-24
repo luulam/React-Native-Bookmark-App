@@ -17,6 +17,10 @@ export default Navigation = StackNavigator(
         }
     },
     {
-
+        initialRouteName: 'Home',
+        headerMode: 'none',
+        cardStyle: {
+            backgroundColor: 'transparent'
+        }
     }
 )
