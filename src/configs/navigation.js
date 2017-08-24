@@ -20,6 +20,7 @@ export default Navigation = StackNavigator(
         initialRouteName: 'Home',
         headerMode: 'none',
         cardStyle: {
+            shadowColor: 'transparent',
             backgroundColor: 'transparent'
         }
     }

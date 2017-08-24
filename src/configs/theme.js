@@ -8,9 +8,12 @@ const colors = {
     access: '#191919',
     text: '#191919',
     disable: '#cccccc',
+    border: '#EDEEF2',
     green: '#00551e',
     brown: '#693504',
-    red: '#db2828'
+    red: '#db2828',
+    white: '#f9f9f9',
+    black: '#0f0f0f'
 }
 
 const constants = {
@@ -21,13 +24,14 @@ const constants = {
     padHor: 8,
     padVer: 4,
     pad: 4,
-    opacity: 0.6,
+    opacity: .6,
+    border: .5,
     font: {
         nomal: 16,
-        header: 24,
+        header: 32,
     },
     icon: 38,
-    btnHeight:38,
+    btnHeight: 38,
 }
 
 export {

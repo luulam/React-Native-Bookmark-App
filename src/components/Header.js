@@ -17,8 +17,9 @@ let HeaderApp = ({
 }) => {
     return (
         <View
-            style={[style]}>
+            style={style}>
             <Text
+                align='center'
                 text={title}
                 fontSize={constants.font.header}
                 bold />
@@ -37,6 +38,8 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        borderBottomWidth: constants.border,
+        borderBottomColor: colors.border
     },
     constantLeft: {
         flexDirection: 'row'

@@ -26,12 +26,12 @@ let ButtonApp = ({
             onPress={onPress}
             style={[style, {
                 borderRadius: border ? constants.btnHeight / 2 : undefined,
-                borderWidth: border ? 0.5 : 0,
-                borderColor: 'gray',
+                borderWidth: border ? backgroundColor != colors.white ? 0 : constants.border : 0,
+                borderColor: colors.border,
                 backgroundColor
             }]}>
             <Text
-                color={backgroundColor != '#fff' ? '#fff' : colors.text}
+                color={backgroundColor != colors.white ? colors.white : colors.text}
                 text={title}
                 fontSize={constants.font.nomal} />
             {children}
@@ -45,8 +45,7 @@ let styles = StyleSheet.create({
         height: constants.btnHeight,
         alignItems: 'center',
         justifyContent: 'center',
-        alignSelf: 'flex-start',
-
+        alignSelf: 'flex-start'
     },
     constantLeft: {
         flexDirection: 'row'
@@ -60,7 +59,7 @@ ButtonApp.propTypes = {
 ButtonApp.defaultProps = {
     style: styles.constant,
     border: true,
-    backgroundColor: '#fff'
+    backgroundColor: colors.white
 }
 
 

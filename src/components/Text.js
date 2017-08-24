@@ -17,6 +17,7 @@ let TextApp = ({
     disable,
     color,
     fontSize,
+    align,
     ellipsizeMode,
     numberOfLines,
     children,
@@ -28,12 +29,13 @@ let TextApp = ({
         key={key}
         ellipsizeMode={ellipsizeMode}
         numberOfLines={numberOfLines}
-        style={[{
+        style={[style,{
+            textAlign: align,
             color: disable ? colors.disable : color,
             fontSize,
             fontWeight: bold ? 'bold' : undefined,
             fontStyle: italic ? 'italic' : undefined
-        }, style]}
+        }]}
     >
         {text}
         {children}
@@ -42,7 +44,7 @@ let TextApp = ({
 
 let styles = StyleSheet.create({
     constant: {
-        alignSelf: 'flex-start',
+        // alignSelf: 'flex-start',
     }
 })
 
@@ -52,7 +54,8 @@ TextApp.propTypes = {
     italic: PropTypes.bool,
     disable: PropTypes.bool,
     color: PropTypes.string,
-    fontSize: PropTypes.number
+    fontSize: PropTypes.number,
+    align: PropTypes.string,
 }
 
 TextApp.defaultProps = {
@@ -60,7 +63,8 @@ TextApp.defaultProps = {
     fontSize: constants.font.nomal,
     numberOfLines: undefined,
     ellipsizeMode: 'tail',
-    style: styles.constant
+    style: styles.constant,
+    align: 'left'
 }
 
 export default TextApp
