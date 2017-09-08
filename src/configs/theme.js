@@ -5,7 +5,7 @@ const colors = {
     primary: '#edbbd0',
     secondary: '#B3D9CE',
     bg_app: '#F7F7F7',
-    access: '#191919',
+    access: '#71C7B8',
     text: '#191919',
     disable: '#cccccc',
     border: '#EDEEF2',
@@ -27,17 +27,15 @@ const constants = {
     opacity: .6,
     border: .5,
     font: {
+        sub:12,
         nomal: 16,
         header: 32,
     },
-    icon: 38,
+    fab: 48,
+    icon: 36,
     btnHeight: 38,
 }
 
 export {
-    colors, constants
-}
-
-export default {
     colors, constants
 }

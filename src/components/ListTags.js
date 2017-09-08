@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native'
 import { Button, Text } from './'
-import { constants } from '../configs/theme'
+import { constants } from '../configs'
 import { string } from '../assets'
 import Realm from '../configs/realm'
 

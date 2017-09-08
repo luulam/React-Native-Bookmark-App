@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native'
 import { Text } from './'
-import { colors, constants } from '../configs/theme'
+import { colors, constants } from '../configs'
 
 /**
  * 

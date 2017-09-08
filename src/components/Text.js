@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native'
-import { colors, constants } from '../configs/theme'
+import { colors, constants } from '../configs'
 
 /**
  * 
