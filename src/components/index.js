@@ -6,6 +6,7 @@ import ListTags from './ListTags';
 import InputText from './InputText';
 import SelectTags from './selectTags';
 import ModalCreateTag from './ModalCreateTag';
+import KeyboardHandleView from './KeyboardHandleView'
 
 export {
     Text,
@@ -15,5 +16,6 @@ export {
     ListTags,
     InputText,
     SelectTags,
-    ModalCreateTag
+    ModalCreateTag,
+    KeyboardHandleView
 }

@@ -46,6 +46,7 @@ export default class ListTags extends Component {
 
     _renderInputAdd = () => {
         return <InputText
+            ref={(conponent) => this.inputTag = conponent}
             hintTop={true}
             maxLength={configs.max_input_tag}
             ref={(compo) => this.inputTag = compo}
@@ -107,17 +108,15 @@ export default class ListTags extends Component {
     }
 
     _onHideModal = ({ add, name, color }) => {
-        if (add) {
-            this._addSelect(name, color)
-        }
-        // console.log('_onHideModal', add, name, color)
+        if (add) this._addSelect(name, color)
     }
 
     _addSelect = (name, color) => {
         let { tagsSelect } = this.state
         this.setState({
-            tagsSelect: tagsSelect.concat({ name, color })
+            tagsSelect: tagsSelect.concat({ name, color }),
         })
+        this.inputTag.removeText() 
     }
 
     _removeSelect = (index) => {

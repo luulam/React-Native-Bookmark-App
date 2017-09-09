@@ -93,6 +93,10 @@ export default class InputText extends Component {
         return this.state.value
     }
 
+    removeText = () => {
+        this._handRemoveAllText()
+    }
+
     _handRemoveAllText = () => {
         this.setState({ value: '' });
         this.props.onChangeText && this.props.onChangeText('');
@@ -108,6 +112,8 @@ const styles = StyleSheet.create({
     constant: {
         paddingHorizontal: constants.padHor,
         paddingVertical: constants.padVer,
+        borderBottomColor: colors.border,
+        borderBottomWidth: constants.border
     },
     constantHint: {
         flexDirection: 'row',

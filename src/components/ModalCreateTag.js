@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, Button, Header, InputText, Icon } from './'
+import { Text, Button, Header, InputText, Icon, KeyboardHandleView } from './'
 import { colors, constants, configs } from '../configs'
 import { array, string } from '../assets'
 
@@ -90,6 +90,7 @@ class ModalCreateTag extends Component {
             {this._renderName()}
             {this._renderSelectColor()}
             {this._renderControl()}
+
         </View >
     }
 
@@ -106,6 +107,8 @@ class ModalCreateTag extends Component {
                     style={styles.constantModal}>
                     {this._renderContent()}
                 </View>
+                {/* <View style={{ height: 200 }} /> */}
+                <KeyboardHandleView />
             </Modal>
         )
     }
