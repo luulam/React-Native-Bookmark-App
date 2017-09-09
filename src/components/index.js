@@ -7,9 +7,11 @@ import InputText from './InputText';
 import SelectTags from './selectTags';
 import ModalCreateTag from './ModalCreateTag';
 import KeyboardHandleView from './KeyboardHandleView'
+import Notify from './Notify'
 
 export {
     Text,
+    Notify,
     Header,
     Icon,
     Button,

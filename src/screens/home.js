@@ -6,6 +6,7 @@ import { Tag } from '../helper/dataBase'
 import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag } from '../components'
 import { constants, colors } from '../configs'
 import { string } from '../assets'
+import actions from '../redux/actions'
 
 class Home extends Component {
 
@@ -57,6 +58,7 @@ class Home extends Component {
             </TouchableOpacity>
         )
     }
+
     render() {
         return (
             <View
@@ -115,9 +117,11 @@ const mapStateToProps = (state, ownProps) => {
         state: state
     }
 }
+
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        // showSnackBar: (data) => dispatch(showSnackBar(data))
+        showNotify: (data) => (actions.showNotify(dispatch)(data))
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

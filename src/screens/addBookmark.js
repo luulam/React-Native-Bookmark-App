@@ -9,6 +9,10 @@ class AddBookmark extends Component {
 
     constructor(props) {
         super(props)
+        this.setlectTags = null;
+        this.inputTitle = null;
+        this.inputContent = null;
+
         this.state = {
             title: '',
             content: ''
@@ -22,7 +26,8 @@ class AddBookmark extends Component {
             >
                 <Icon
                     margin
-                    name='ios-checkmark-outline' />
+                    name='ios-checkmark-outline'
+                    onPress={() => this._onCreateBookmark()} />
                 <Icon
                     margin
                     name='ios-close-outline'
@@ -39,7 +44,8 @@ class AddBookmark extends Component {
                     bold
                     italic
                     style={styles.name} />
-                <SelectTags />
+                <SelectTags
+                    ref={(component) => this.setlectTags = component} />
             </View>
         )
     }
@@ -54,11 +60,13 @@ class AddBookmark extends Component {
                     italic
                     style={styles.name} />
                 <InputText
+                    ref={(compo) => this.inputTitle = compo}
                     hint={string.title}
                     autoFocus
                     hintTop
                     maxLength={configs.max_input_title} />
                 <InputText
+                    ref={(compo) => this.inputContent = compo}
                     hint={string.content}
                     hintTop
                     multiline
@@ -77,6 +85,16 @@ class AddBookmark extends Component {
                 {this.renderContent()}
             </View>
         )
+    }
+
+    _onVerify = () => {
+        if (this.inputContent.text().length < 0) {
+
+        }
+    }
+    
+    _onCreateBookmark = () => {
+        console.log(this.setlectTags.getTag())
     }
 }
 

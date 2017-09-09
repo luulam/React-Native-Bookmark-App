@@ -116,7 +116,7 @@ export default class ListTags extends Component {
         this.setState({
             tagsSelect: tagsSelect.concat({ name, color }),
         })
-        this.inputTag.removeText() 
+        this.inputTag.removeText()
     }
 
     _removeSelect = (index) => {
@@ -130,6 +130,11 @@ export default class ListTags extends Component {
         textInputTag
         let textinput = this.inputTag.text();
         return textinput
+    }
+
+    getTag = () => {
+        let { tagsSelect } = this.state
+        return tagsSelect
     }
 }
 
