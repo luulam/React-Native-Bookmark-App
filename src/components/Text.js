@@ -21,12 +21,10 @@ let TextApp = ({
     ellipsizeMode,
     numberOfLines,
     children,
-    onPress,
-    key
+    onPress
 }) => {
     return <Text
         onPress={onPress}
-        key={key}
         ellipsizeMode={ellipsizeMode}
         numberOfLines={numberOfLines}
         style={[style,{

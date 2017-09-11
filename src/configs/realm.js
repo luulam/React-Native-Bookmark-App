@@ -1,6 +1,5 @@
 import Realm from 'realm'
 
-
 /**
  * @dateCreate: moment('LLL')
  * 
@@ -13,6 +12,8 @@ let TagSchema = {
         id: { type: 'int' },
         name: { type: 'string' },
         color: { type: 'string', default: '#ffffff' },
+        timeCreate: { type: 'string' },
+        timeUpdate: { type: 'string' },
     }
 };
 
@@ -21,12 +22,17 @@ let BookmarkSchema = {
     primaryKey: 'id',
     properties: {
         id: { type: 'int' },
-        name: { type: 'string' },
+        title: { type: 'string' },
         content: { type: 'string' },
         hide: { type: 'bool' },
-        dateCreate: { type: 'string' },
-        tags: { type: 'list', objectType: 'Tag' }
+        tags: { type: 'list', objectType: 'Tag' },
+        timeCreate: { type: 'string' },
+        timeUpdate: { type: 'string' },
     }
 };
 
-export default new Realm({ schema: [TagSchema, BookmarkSchema] })
+export default new Realm({
+    path: Realm.defaultPath,
+    schemaVersion: Realm.schemaVersion(Realm.defaultPath),
+    schema: [TagSchema, BookmarkSchema]
+})

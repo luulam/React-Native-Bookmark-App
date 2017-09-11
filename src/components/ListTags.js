@@ -18,7 +18,8 @@ export default class ListTags extends Component {
     }
 
     renderTag = (v, i) => {
-        return <View key={i}
+        return <View
+            key={i}
             style={styles.padding}>
             <Button title={v.name}
                 backgroundColor={v.color}

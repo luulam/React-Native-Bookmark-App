@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Realm from '../configs/realm'
-import { Tag } from '../helper/dataBase'
+import { Tag, Bookmark } from '../helper/dataBase'
 import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag } from '../components'
 import { constants, colors } from '../configs'
 import { string } from '../assets'
@@ -13,7 +13,8 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dataTags: []
+            dataTags: [],
+            dataBookmarks: []
         }
     }
 
@@ -29,7 +30,8 @@ class Home extends Component {
             <View
                 style={styles.constantSearch}>
                 <Text
-                    text={string.search_of_bookmark} align='center' />
+                    text={string.search_of_bookmark}
+                    align='center' />
             </View>
         )
     }
@@ -73,15 +75,20 @@ class Home extends Component {
 
     componentDidMount() {
         let arrTagsDB = Tag.get();
+        let arrBookmarksDB = Bookmark.get();
         arrTagsDB.addListener((collection, changes) => {
             this.setState({
                 dataTags: collection
             })
         });
+        console.log(arrTagsDB.map(v => Object.assign({}, v)))
+        console.log(arrBookmarksDB.map(v => Object.assign({}, v)))
         //first add data for list
         this.setState({
-            dataTags: arrTagsDB
+            dataTags: arrTagsDB,
+            dataBookmarks: arrBookmarksDB
         })
+        console.log('aa',typeof (new Date().toString()))
     }
 
     componentWillUnmount() {
@@ -112,16 +119,12 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        state: state
-    }
-}
+const mapStateToProps = (state, ownProps) => ({
+    state
+})
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        showNotify: (data) => (actions.showNotify(dispatch)(data))
-    }
-}
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    showNotify: (data) => (actions.showNotify(dispatch)(data))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

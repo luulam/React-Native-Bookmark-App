@@ -11,18 +11,44 @@ const get = () => {
     return Realm.objects('Tag');
 }
 
-const add = ({ name, color = '#000' }) => {
-    if (!name) console.warn(`name is require`);
+const add = ({
+    name,
+    color = '#000000',
+    timeCreate = new Date().toString(),
+    timeUpdate = new Date().toString()
+ }) => {
+
     try {
+        if (!name) throw `name is require`
+
+        let arrTag = get().sorted('id');
+        if (arrTag.filter(v => v.name === name).length !== 0) throw `name is already exists `
+
+        let id = arrTag.length !== 0 ? arrTag[arrTag.length - 1]['id'] + 1 : 1;
+        let object
         Realm.write(() => {
-            let arrTag = get().sorted('id');
-            let id = arrTag.length !== 0 ? arrTag[arrTag.length - 1]['id'] : 1;
-            Realm.create('Tag', { id: id + 1, name, color });
+            object = Realm.create('Tag', { id, name, color, timeCreate, timeUpdate });
         });
+
+        return object
     } catch (e) {
-        console.error(e)
+        console.log('TAG add ', e)
     }
 }
+
+const addAll = (arr) => new Promise((resolve, reject) => {
+    try {
+        let arrTags = []
+        arr.forEach((element) => {
+            console.log('create addAll Tags', element)
+            arrTags.push(add({ name: element.name, color: element.color }))
+        });
+        resolve(arrTags)
+    } catch (e) {
+        reject(e)
+        console.error(e)
+    }
+})
 
 const remove = (index) => {
     try {
@@ -33,6 +59,7 @@ const remove = (index) => {
         console.error('remove', e)
     }
 }
+
 const removeAll = () => {
     try {
         Realm.write(() => {
@@ -45,7 +72,8 @@ const removeAll = () => {
 
 export default {
     get,
-    add,
     remove,
-    removeAll
+    removeAll,
+    add,
+    addAll
 }

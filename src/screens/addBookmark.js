@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { Text, Header, Icon, Button, InputText, SelectTags, ModalCreateTag } from '../components'
 import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
-
+import { Tag, Bookmark } from '../helper/dataBase'
 class AddBookmark extends Component {
 
     constructor(props) {
@@ -64,6 +64,7 @@ class AddBookmark extends Component {
                     hint={string.title}
                     autoFocus
                     hintTop
+                    multiline
                     maxLength={configs.max_input_title} />
                 <InputText
                     ref={(compo) => this.inputContent = compo}
@@ -88,13 +89,37 @@ class AddBookmark extends Component {
     }
 
     _onVerify = () => {
-        if (this.inputContent.text().length < 0) {
-
+        if (this.inputTitle.text().length === 0) {
+            this.inputTitle.showError('Input title')
         }
+
+        if (this.inputContent.text().length === 0) {
+            this.inputContent.showError('Input content')
+            return false
+        }
+        return true
     }
-    
+
     _onCreateBookmark = () => {
-        console.log(this.setlectTags.getTag())
+        if (!this._onVerify()) return
+
+        Tag.addAll(this.setlectTags.wrappedInstance.getTag())
+            .then((arr) => {
+
+                Bookmark.add({
+                    content: this.inputContent.text(),
+                    title: this.inputTitle.text(),
+                    hide: false,
+                    tags: arr
+                })
+
+                this.props.navigation.navigate('Home')
+
+
+            }).catch((error) => {
+                console.log('add error', error)
+            })
+
     }
 }
 

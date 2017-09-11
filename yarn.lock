@@ -897,10 +897,6 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
-
 body-parser@~1.13.3:
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.13.3.tgz#c08cf330c3358e151016a05746f13f029c97fa97"
@@ -1915,6 +1911,12 @@ image-size@^0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.3.5.tgz#83240eab2fb5b00b04aab8c74b0471e9cba7ad8c"
 
+immutability-helper@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/immutability-helper/-/immutability-helper-2.3.1.tgz#8ccfce92157208c120b2afad7ed05c11114c086e"
+  dependencies:
+    invariant "^2.2.0"
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
@@ -1953,7 +1955,7 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-invariant@^2.0.0, invariant@^2.2.2:
+invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:

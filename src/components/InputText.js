@@ -12,7 +12,8 @@ export default class InputText extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: this.props.defaultValue || ''
+            value: this.props.defaultValue || '',
+            error: undefined
         }
     }
 
@@ -51,6 +52,16 @@ export default class InputText extends Component {
             : null
     }
 
+    _renderError = () => {
+        let { error } = this.state
+        return error
+            ? <Text
+                size={constants.font.sub}
+                color={colors.error}
+                text={error} />
+            : null
+    }
+
     render() {
         const {
             hint,
@@ -76,16 +87,30 @@ export default class InputText extends Component {
                     underlineColorAndroid='transparent'
                     onChangeText={this._onChangeText}
                     value={value}
+                    onFocus={this._onFocus}
                     style={{
                         fontSize: constants.font.nomal,
                         ...style
                     }}
                 />
+                {this._renderError()}
                 {this._renderRemoveAll()}
             </View>
         )
     }
 
+    _onFocus = () => {
+        this.setState({ error: undefined })
+    }
+    _handRemoveAllText = () => {
+        this.setState({ value: '' });
+        this.props.onChangeText && this.props.onChangeText('');
+    }
+
+    _onChangeText = (text) => {
+        this.setState({ value: text });
+        this.props.onChangeText && this.props.onChangeText(text);
+    }
     /**
      * {string} @return 'curent text '
      */
@@ -97,14 +122,8 @@ export default class InputText extends Component {
         this._handRemoveAllText()
     }
 
-    _handRemoveAllText = () => {
-        this.setState({ value: '' });
-        this.props.onChangeText && this.props.onChangeText('');
-    }
-
-    _onChangeText = (text) => {
-        this.setState({ value: text });
-        this.props.onChangeText && this.props.onChangeText(text);
+    showError = (error) => {
+        this.setState({ error: error })
     }
 }
 

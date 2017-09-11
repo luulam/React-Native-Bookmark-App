@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native'
 import { Button, Text, InputText, Icon, ModalCreateTag } from './'
 import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
 import { Tag } from '../helper/dataBase'
-
+import update from 'immutability-helper';
+import actions from '../redux/actions'
 /**
  * @param {arr realm resuft} data 
  * @param {func} onPress
  */
 
-export default class ListTags extends Component {
+class ListTags extends Component {
     static propTypes = {
 
     }
@@ -22,16 +24,16 @@ export default class ListTags extends Component {
         this.state = {
             tagsSelect: [],
             tagsSuggest: [],
-            tags: [],
+            tagsExists: [],
             textInputTag: ''
         }
     }
 
     _renderItem = (v, i) => {
         return <Button
+            key={i}
             onPress={() => { this._removeSelect(i) }}
             style={{ marginLeft: constants.padHor, marginBottom: constants.padVer }}
-            key={i}
             backgroundColor={v.color}
             title={`#${v.name}`}
         />
@@ -56,12 +58,13 @@ export default class ListTags extends Component {
     }
 
     _renderSuggest = () => {
-        let { tags, textInputTag } = this.state
+        let { tagsExists, textInputTag, tagsSelect } = this.state
         return <View
             style={styles.listTags}
         >
             {textInputTag.length !== 0
                 ? <Button
+                    style={styles.marginTag}
                     title={string.add}
                     onPress={() => this.modal.show({ name: textInputTag })} >
                     <Icon
@@ -73,11 +76,20 @@ export default class ListTags extends Component {
                 </Button>
                 : null
             }
-            {tags
-                .filter((v) => v.name.indexOf(textInputTag) !== -1)
-                .map((v, i) => <Text
-                    text={textInputTag}
-                />)
+            {textInputTag.length !== 0
+                ? tagsExists
+                    .filter((v) => {
+                        return tagsSelect.filter(vS => vS.name === v.name).length === 0
+                    })
+                    .filter((v) => v.name.indexOf(textInputTag) !== -1)
+                    .map((v, i) => <Button
+                        style={styles.marginTag}
+                        backgroundColor={v.color}
+                        title={v.name}
+                        key={i}
+                        onPress={() => this._addSelect(v.name, v.color)}
+                    />)
+                : null
             }
         </View>
     }
@@ -101,10 +113,10 @@ export default class ListTags extends Component {
     componentDidMount() {
         let arrTagsDB = Tag.get();
         arrTagsDB.addListener((collection, changes) => {
-            this.setState({ tags: collection })
+            this.setState({ tagsExists: collection })
         });
         //first add data for list
-        this.setState({ tags: arrTagsDB })
+        this.setState({ tagsExists: arrTagsDB })
     }
 
     _onHideModal = ({ add, name, color }) => {
@@ -122,21 +134,22 @@ export default class ListTags extends Component {
     _removeSelect = (index) => {
         let { tagsSelect } = this.state
         this.setState({
-            tagsSelect: tagsSelect.splice(index, 1)
+            tagsSelect: update(tagsSelect, { $splice: [[index, 1]] })
         })
     }
 
     _getTagSuggest = () => {
-        textInputTag
         let textinput = this.inputTag.text();
         return textinput
     }
 
     getTag = () => {
-        let { tagsSelect } = this.state
-        return tagsSelect
+        console.log('aslkdjlaksjdkljsalk')
+        let { tagsSelect } = this.state;
+        return tagsSelect;
     }
 }
+
 
 const styles = StyleSheet.create({
     constant: {
@@ -146,5 +159,16 @@ const styles = StyleSheet.create({
         marginLeft: constants.padHor,
         flexDirection: 'row',
         flexWrap: 'wrap',
+    },
+    marginTag: {
+        marginLeft: constants.padHor,
+        marginTop: constants.padVer
     }
 })
+
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    showNotify: (data) => (actions.showNotify(dispatch)(data))
+})
+
+export default connect(null, mapDispatchToProps, null, { withRef: true })(ListTags)

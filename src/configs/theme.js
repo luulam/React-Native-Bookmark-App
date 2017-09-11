@@ -9,6 +9,7 @@ const colors = {
     text: '#191919',
     disable: '#cccccc',
     border: '#EDEEF2',
+    error: '#db2828',
     green: '#00551e',
     brown: '#693504',
     red: '#db2828',
@@ -27,7 +28,7 @@ const constants = {
     opacity: .6,
     border: .5,
     font: {
-        sub:12,
+        sub: 14,
         nomal: 16,
         header: 32,
     },
