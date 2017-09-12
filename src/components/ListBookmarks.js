@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { View, StyleSheet, FlatList, TouchableOpacity, Share, Linking } from 'react-native'
 import { Button, Text, Icon } from './'
 import { constants, colors } from '../configs'
 import { string } from '../assets'
-import Realm from '../configs/realm'
 import moment from 'moment'
-import { ValidURL } from '../helper'
+import { ValidURL, Bookmark } from '../helper'
+import actions from '../redux/actions'
 
-export default class ListBookmarks extends Component {
+class ListBookmarks extends Component {
 
     static propTypes = {
         data: PropTypes.any,
@@ -45,7 +46,7 @@ export default class ListBookmarks extends Component {
                     text={item.content}
                     fontSize={constants.font.sub} />
                 <View
-                    style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    style={styles.constantButton}>
                     <Icon
                         name='ios-create-outline'
                         onPress={() => this._onPressEdit(item)} />
@@ -102,7 +103,15 @@ export default class ListBookmarks extends Component {
     }
 
     _onPressRemove = (item) => {
-
+        this.props.showDialog(string.remove_bookmark, string.remove_bookmark_info, [
+            {
+                title: string.ok, onPress: () => {
+                    Bookmark.remove(item.id);
+                    this.props.hideDialog();
+                }
+            },
+            { title: string.canner, onPress: () => this.props.hideDialog() }
+        ])
     }
 
     _onPressShare = (item) => {
@@ -137,5 +146,17 @@ const styles = StyleSheet.create({
     constantarrTagsItem: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+    },
+    constantButton: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }
 })
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    showNotify: (data) => actions.showNotify(dispatch)(data),
+    showDialog: (title, message, button) => actions.showDialog(dispatch)(title, message, button),
+    hideDialog: () => actions.hideDialog(dispatch)
+})
+
+export default connect(null, mapDispatchToProps, null, { withRef: true })(ListBookmarks)

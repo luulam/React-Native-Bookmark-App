@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native'
 import { Button, Text, InputText, Icon, ModalCreateTag } from './'
 import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
-import { Tag } from '../helper/dataBase'
+import { Tag } from '../helper'
 import update from 'immutability-helper';
 import actions from '../redux/actions'
 /**

@@ -27,9 +27,11 @@ const constants = {
     pad: 4,
     opacity: .6,
     border: 0.7,
+    borderRadius: 6,
     font: {
         sub: 14,
         nomal: 16,
+        dialog: 22,
         header: 32,
     },
     fab: 48,

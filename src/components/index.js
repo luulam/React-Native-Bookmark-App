@@ -9,6 +9,7 @@ import ModalCreateTag from './ModalCreateTag';
 import KeyboardHandleView from './KeyboardHandleView'
 import Notify from './Notify'
 import ListBookmarks from './ListBookmarks'
+import Dialog from './Dialog'
 
 export {
     Text,
@@ -21,5 +22,6 @@ export {
     SelectTags,
     ModalCreateTag,
     KeyboardHandleView,
-    ListBookmarks
+    ListBookmarks,
+    Dialog
 }

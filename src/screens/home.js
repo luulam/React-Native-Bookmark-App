@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Realm from '../configs/realm'
-import { Tag, Bookmark } from '../helper/dataBase'
+import { Tag, Bookmark } from '../helper'
 import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag, ListBookmarks } from '../components'
 import { constants, colors } from '../configs'
 import { string } from '../assets'
@@ -83,13 +83,18 @@ class Home extends Component {
     componentDidMount() {
         let arrTagsDB = Tag.get();
         let arrBookmarksDB = Bookmark.get();
+
         arrTagsDB.addListener((collection, changes) => {
             this.setState({
                 dataTags: collection
             })
         });
-        console.log(arrTagsDB.map(v => Object.assign({}, v)))
-        console.log(arrBookmarksDB.map(v => Object.assign({}, v)))
+
+        arrBookmarksDB.addListener((collection, changes) => {
+            this.setState({
+                dataBookmarks: collection
+            })
+        });
         //first add data for list
         this.setState({
             dataTags: arrTagsDB,
@@ -130,7 +135,9 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    showNotify: (data) => (actions.showNotify(dispatch)(data))
+    showNotify: (data) => actions.showNotify(dispatch)(data),
+    showDialog: (title, message, button) => actions.showDialog(dispatch)(title, message, button),
+    hideDialog: () => actions.hideDialog(dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

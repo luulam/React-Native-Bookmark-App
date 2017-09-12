@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './redux/reducers';
 import { StatusBar, View } from 'react-native'
-import { Notify } from './components'
+import { Notify, Dialog } from './components'
 import Navigation from './configs/navigation'
 
 export default () => {
@@ -21,7 +21,7 @@ export default () => {
           barStyle='dark-content'
           backgroundColor='transparent' />
         <Notify />
-
+        <Dialog />
         <Navigation />
       </View >
     </Provider >

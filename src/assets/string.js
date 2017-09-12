@@ -11,4 +11,6 @@ export default class {
     static title = `#Title`
     static content = `#Content`
     static add = `Add`
+    static remove_bookmark = `Remove Bookmark`
+    static remove_bookmark_info = `You agree to delete Bookmark`
 }

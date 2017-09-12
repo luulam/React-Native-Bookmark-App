@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { Text, Header, Icon, Button, InputText, SelectTags, ModalCreateTag } from '../components'
 import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
-import { Tag, Bookmark } from '../helper/dataBase'
+import { Tag, Bookmark } from '../helper'
 class AddBookmark extends Component {
 
     constructor(props) {
