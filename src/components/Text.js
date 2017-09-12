@@ -21,18 +21,20 @@ let TextApp = ({
     ellipsizeMode,
     numberOfLines,
     children,
-    onPress
+    onPress,
+    under
 }) => {
     return <Text
         onPress={onPress}
         ellipsizeMode={ellipsizeMode}
         numberOfLines={numberOfLines}
-        style={[style,{
+        style={[style, {
             textAlign: align,
             color: disable ? colors.disable : color,
             fontSize,
             fontWeight: bold ? 'bold' : undefined,
-            fontStyle: italic ? 'italic' : undefined
+            fontStyle: italic ? 'italic' : undefined,
+            textDecorationLine: under ? 'underline' : 'none'
         }]}
     >
         {text}

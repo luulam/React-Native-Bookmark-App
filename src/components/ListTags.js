@@ -42,8 +42,10 @@ export default class ListTags extends Component {
     render() {
         return (
             <View style={styles.constant}>
-                <Text text={string.name_listtags}
+                <Text
+                    text={string.name_listtags}
                     bold
+                    under
                     italic
                     style={styles.name} />
                 {this.renderListTags()}

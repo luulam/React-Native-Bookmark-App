@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, FlatList, TouchableOpacity, Share, Linking } from 'react-native'
 import { Button, Text, Icon } from './'
 import { constants, colors } from '../configs'
 import { string } from '../assets'
 import Realm from '../configs/realm'
 import moment from 'moment'
-
-/**
- * @param {arr realm resuft} data 
- * @param {func} onPress
- */
+import { ValidURL } from '../helper'
 
 export default class ListBookmarks extends Component {
 
@@ -36,7 +32,7 @@ export default class ListBookmarks extends Component {
                     text={moment(new Date(item.timeCreate).getTime()).fromNow()} />
                 {item['tags'].map((v, i) => <Text
                     key={i}
-                    text={` #${v.name} `}
+                    text={` #${v.name}`}
                     color={v.color} />)}
             </View>
         )
@@ -85,9 +81,12 @@ export default class ListBookmarks extends Component {
     render() {
         let { data } = this.props
         return (
-            <View style={styles.constant}>
-                <Text text={string.name_listbookmarks}
+            <View
+                style={styles.constant}>
+                <Text
+                    text={string.name_listbookmarks}
                     bold
+                    under
                     italic
                     style={styles.name} />
                 <FlatList
@@ -107,7 +106,11 @@ export default class ListBookmarks extends Component {
     }
 
     _onPressShare = (item) => {
-
+        if (ValidURL(item.content)) {
+            Linking.openURL(item.content).catch((error) => Share.share({ title: item.title, url: item.content, message: item.content }).catch((error) => console.log(error)))
+        } else {
+            Share.share({ title: item.title, url: item.content, message: item.content }).catch((error) => console.log(error))
+        }
     }
 
     _onPressEdit = (item) => {
