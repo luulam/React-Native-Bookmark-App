@@ -8,7 +8,7 @@ const colors = {
     access: '#71C7B8',
     text: '#191919',
     disable: '#cccccc',
-    border: '#EDEEF2',
+    border: '#bababa',
     error: '#db2828',
     green: '#00551e',
     brown: '#693504',
@@ -26,7 +26,7 @@ const constants = {
     padVer: 4,
     pad: 4,
     opacity: .6,
-    border: .5,
+    border: 0.7,
     font: {
         sub: 14,
         nomal: 16,

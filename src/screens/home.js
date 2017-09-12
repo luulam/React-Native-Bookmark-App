@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Realm from '../configs/realm'
 import { Tag, Bookmark } from '../helper/dataBase'
-import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag } from '../components'
+import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag, ListBookmarks } from '../components'
 import { constants, colors } from '../configs'
 import { string } from '../assets'
 import actions from '../redux/actions'
@@ -42,8 +42,14 @@ class Home extends Component {
             <ListTags
                 data={dataTags}
                 onPress={(v, i) => {
-                    Tag.remove(v.id)
+                    // Tag.remove(v.id)
                 }} />
+        )
+    }
+    renderListBookmarks = () => {
+        const { dataBookmarks } = this.state
+        return (
+            <ListBookmarks data={dataBookmarks} />
         )
     }
 
@@ -68,6 +74,7 @@ class Home extends Component {
                 {this.renderHeader()}
                 {this.renderSearch()}
                 {this.renderContent()}
+                {this.renderListBookmarks()}
                 {this.renderFabAdd()}
             </View>
         )
@@ -88,7 +95,6 @@ class Home extends Component {
             dataTags: arrTagsDB,
             dataBookmarks: arrBookmarksDB
         })
-        console.log('aa',typeof (new Date().toString()))
     }
 
     componentWillUnmount() {

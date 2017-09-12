@@ -24,7 +24,7 @@ export default class KeyboardHandleView extends Component {
         return (
             <View
                 style={[{
-                    height: heightKeyBoard,
+                    height: Platform.OS === 'ios' ? heightKeyBoard : 0,
                 }, style]}
             />
         );

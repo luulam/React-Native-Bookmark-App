@@ -79,6 +79,7 @@ export default class InputText extends Component {
             >
                 {hintTop ? this._renderHint() : null}
                 <TextInput
+                    inlineImagePadding={0}
                     maxLength={maxLength}
                     autoFocus={autoFocus}
                     placeholder={hint}

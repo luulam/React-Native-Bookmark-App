@@ -8,6 +8,7 @@ import SelectTags from './selectTags';
 import ModalCreateTag from './ModalCreateTag';
 import KeyboardHandleView from './KeyboardHandleView'
 import Notify from './Notify'
+import ListBookmarks from './ListBookmarks'
 
 export {
     Text,
@@ -19,5 +20,6 @@ export {
     InputText,
     SelectTags,
     ModalCreateTag,
-    KeyboardHandleView
+    KeyboardHandleView,
+    ListBookmarks
 }

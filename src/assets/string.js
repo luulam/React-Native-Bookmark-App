@@ -1,6 +1,7 @@
 
 export default class {
     static name_listtags = '#Tags recent time'
+    static name_listbookmarks = '#Bookmarks'
     static see_all = '...See All'
     static search_of_bookmark = 'Search in your bookmark .... '
     static tag = `#Tag`
