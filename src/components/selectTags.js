@@ -51,7 +51,6 @@ class ListTags extends Component {
             ref={(conponent) => this.inputTag = conponent}
             hintTop={true}
             maxLength={configs.max_input_tag}
-            ref={(compo) => this.inputTag = compo}
             hint='Input name tag #'
             onChangeText={(text) => { this.setState({ textInputTag: text }) }}
         />

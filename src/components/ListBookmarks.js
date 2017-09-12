@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, StyleSheet, FlatList, TouchableOpacity, Share, Linking } from 'react-native'
-import { Button, Text, Icon } from './'
-import { constants, colors } from '../configs'
+import { Button, Text, Icon, InputText } from './'
+import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
 import moment from 'moment'
 import { ValidURL, Bookmark } from '../helper'
@@ -17,8 +17,11 @@ class ListBookmarks extends Component {
 
     constructor(props) {
         super(props)
+        this.editContent = null
+        this.editTitle = null
         this.state = {
             select: undefined,
+            edit: undefined,
             selected: (new Map())
         };
     }
@@ -39,22 +42,37 @@ class ListBookmarks extends Component {
         )
     }
 
-    _renderSubBookmark = (item) => {
+    _renderSubBookmark = (item, index) => {
+        let { select, edit } = this.state
         return (
             <View>
-                <Text
-                    text={item.content}
-                    fontSize={constants.font.sub} />
+                {edit === index
+                    ? <InputText
+                        hintTop
+                        defaultValue={item.content}
+                        multiline
+                        maxLength={configs.max_input_content}
+                        ref={(compo) => this.editContent = compo}
+                        hint={string.content}
+                    />
+                    : <Text
+                        text={item.content}
+                        fontSize={constants.font.sub} />}
                 <View
                     style={styles.constantButton}>
                     <Icon
-                        name='ios-create-outline'
-                        onPress={() => this._onPressEdit(item)} />
+                        name={edit === index ? 'ios-done-all-outline' : 'ios-create-outline'}
+                        onPress={() => this._onPressEdit(item, index)} />
                     <Icon
-                        name='ios-trash-outline' onPress={() => this._onPressRemove(item)} />
+                        name='ios-trash-outline'
+                        onPress={() => this.setState({
+                            edit: undefined
+                        }, () => this._onPressRemove(item))} />
                     <Icon
                         name='ios-share-outline'
-                        onPress={() => this._onPressShare(item)} />
+                        onPress={() => this.setState({
+                            edit: undefined
+                        }, () => this._onPressShare(item))} />
                 </View>
             </View>
 
@@ -62,17 +80,31 @@ class ListBookmarks extends Component {
     }
 
     _renderBookmark = ({ item, index }) => {
-        let { select } = this.state
+        let { select, edit } = this.state
         return (
             <TouchableOpacity
+                disabled={edit === index}
                 activeOpacity={constants.opacity} style={styles.constantItem}
-                onPress={() => this.setState({ select: select === index ? undefined : index })}>
-                <Text
-                    bold
-                    text={item.title.length === 0 ? item.content : item.title} />
+                onPress={() => this.setState({ select: select === index ? undefined : index, edit: undefined })}
+            >
+                {edit === index
+                    ? <InputText
+                        hintTop
+                        multiline
+                        defaultValue={item.title.length === 0 ? item.content : item.title}
+                        maxLength={configs.max_input_title}
+                        ref={(compo) => this.editTitle = compo}
+                        hint={string.title}
+                    />
+                    : <Text
+                        bold
+                        text={item.title.length === 0 ? item.content : item.title} />}
+
                 {this._renderListTags(item)}
 
-                {select === index ? this._renderSubBookmark(item) : null}
+                {select === index
+                    ? this._renderSubBookmark(item, index)
+                    : null}
             </TouchableOpacity>
         )
     }
@@ -122,7 +154,14 @@ class ListBookmarks extends Component {
         }
     }
 
-    _onPressEdit = (item) => {
+    _onPressEdit = (item, index) => {
+        let { edit } = this.state
+        if (edit === index) {
+            Bookmark.edit(item, { title: this.editTitle.text(), content: this.editContent.text() })
+            this.setState({ edit: undefined })
+        } else {
+            this.setState({ edit: index })
+        }
 
     }
 }

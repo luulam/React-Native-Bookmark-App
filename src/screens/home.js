@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Realm from '../configs/realm'
 import { Tag, Bookmark } from '../helper'
-import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag, ListBookmarks } from '../components'
+import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag, ListBookmarks, KeyboardHandleView } from '../components'
 import { constants, colors } from '../configs'
 import { string } from '../assets'
 import actions from '../redux/actions'
@@ -76,6 +76,7 @@ class Home extends Component {
                 {this.renderContent()}
                 {this.renderListBookmarks()}
                 {this.renderFabAdd()}
+                <KeyboardHandleView />
             </View>
         )
     }

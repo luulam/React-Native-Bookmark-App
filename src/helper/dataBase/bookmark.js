@@ -69,6 +69,20 @@ const addAll = (arr) => new Promise((resolve, reject) => {
     }
 })
 
+const edit = (resuft, { title, content, hide, tags }) => {
+    try {
+        Realm.write(() => {
+            resuft.title = title || resuft.title
+            resuft.content = content || resuft.content
+            resuft.hide = hide || resuft.hide
+            resuft.tags = tags || resuft.tags
+            resuft.timeUpdate = new Date().toString()
+        })
+    } catch (error) {
+        throw error 
+    }
+}
+
 const remove = (index) => {
     try {
         Realm.write(() => {
@@ -93,6 +107,7 @@ export default {
     get,
     add,
     addAll,
+    edit,
     remove,
     removeAll
 }
