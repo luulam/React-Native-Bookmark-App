@@ -1,20 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import { Header } from '../components'
+import { configs, constants, colors } from '../configs'
 
-class Splash extends Component {
+class AllTags extends Component {
     componentDidMount() {
-        
+
     }
+
     render() {
         return (
-            <View >
+            <View
+                style={styles.constant}
+            >
+                <Header title='All Tags' />
 
             </View>
         )
     }
 }
 
+const styles = StyleSheet.create({
+    constant: {
+        paddingTop: constants.statusBarHeight,
+        flex: 1
+    }
+})
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -26,4 +38,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         // showSnackBar: (data) => dispatch(showSnackBar(data))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Splash)
+export default connect(mapStateToProps, mapDispatchToProps)(AllTags)

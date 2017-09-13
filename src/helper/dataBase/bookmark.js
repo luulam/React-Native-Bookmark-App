@@ -11,6 +11,7 @@ import Realm from '../../configs/realm'
  * timeCreate: { type: 'string' },
  * timeUpdate: { type: 'string' },
  */
+import Tag from './tag'
 
 const get = () => {
     return Realm.objects('Bookmark');
@@ -26,8 +27,7 @@ const add = ({
 }) => {
     try {
         if (!content) throw 'Error : content is requi';
-
-        Realm.write(() => {
+        else Realm.write(() => {
             //create fied id 
             let arr = get().sorted('id');
             let id = arr.length !== 0
@@ -44,9 +44,9 @@ const add = ({
                 timeUpdate
             });
         });
+
     } catch (e) {
-        console.error(e)
-        throw 'Error : e'
+        console.log(e)
     }
 }
 
@@ -73,13 +73,20 @@ const edit = (resuft, { title, content, hide, tags }) => {
     try {
         Realm.write(() => {
             resuft.title = title || resuft.title
-            resuft.content = content || resuft.content
+            resuft.contens = content || resuft.content
             resuft.hide = hide || resuft.hide
-            resuft.tags = tags || resuft.tags
             resuft.timeUpdate = new Date().toString()
+            if (tags) {
+                resuft.tags.forEach(v => {
+                    resuft.tags.pop()
+                })
+                tags.forEach((tag) => {
+                    resuft.tags.push(tag)
+                })
+            }
         })
     } catch (error) {
-        throw error 
+        throw error
     }
 }
 

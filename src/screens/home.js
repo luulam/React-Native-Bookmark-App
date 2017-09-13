@@ -40,9 +40,14 @@ class Home extends Component {
         const { dataTags } = this.state
         return (
             <ListTags
+                isSeeAll
                 data={dataTags}
                 onPress={(v, i) => {
-                    // Tag.remove(v.id)
+                    if (v === i) {
+                        this.props.navigation.navigate('AllTags')
+                    } else {
+                        this.props.navigation.navigate('Bookmarks', { name: v.name })
+                    }
                 }} />
         )
     }
@@ -70,9 +75,10 @@ class Home extends Component {
     render() {
         return (
             <View
-                style={{ paddingTop: constants.statusBarHeight, flex: 1 }} >
+                style={styles.constant}
+            >
                 {this.renderHeader()}
-                {this.renderSearch()}
+                
                 {this.renderContent()}
                 {this.renderListBookmarks()}
                 {this.renderFabAdd()}
@@ -101,6 +107,7 @@ class Home extends Component {
             dataTags: arrTagsDB,
             dataBookmarks: arrBookmarksDB
         })
+
     }
 
     componentWillUnmount() {
@@ -113,6 +120,10 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+    constant: {
+        paddingTop: constants.statusBarHeight,
+        flex: 1
+    },
     constantSearch: {
         backgroundColor: colors.border,
         justifyContent: 'center',

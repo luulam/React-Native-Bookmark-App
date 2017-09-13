@@ -6,7 +6,8 @@ import { StackNavigator } from 'react-navigation';
 import Splash from '../screens/splash'
 import Home from '../screens/home'
 import AddBookmark from '../screens/addBookmark'
-
+import AllTags from '../screens/allTags'
+import Bookmarks from '../screens/bookmarks'
 
 export default Navigation = StackNavigator(
     {
@@ -18,6 +19,12 @@ export default Navigation = StackNavigator(
         },
         AddBookmark: {
             screen: AddBookmark
+        },
+        AllTags: {
+            screen: AllTags
+        },
+        Bookmarks: {
+            screen: Bookmarks
         }
     },
     {
@@ -27,6 +34,6 @@ export default Navigation = StackNavigator(
             shadowColor: 'transparent',
             backgroundColor: 'transparent'
         },
-        
+
     }
 )

@@ -124,9 +124,12 @@ class ListTags extends Component {
 
     _addSelect = (name, color) => {
         let { tagsSelect } = this.state
-        this.setState({
-            tagsSelect: tagsSelect.concat({ name, color }),
-        })
+        console.log(tagsSelect)
+        if (tagsSelect.filter(v => v.name === name).length === 0) {
+            this.setState({
+                tagsSelect: tagsSelect.concat({ name, color }),
+            })
+        }
         this.inputTag.removeText()
     }
 
@@ -143,7 +146,6 @@ class ListTags extends Component {
     }
 
     getTag = () => {
-        console.log('aslkdjlaksjdkljsalk')
         let { tagsSelect } = this.state;
         return tagsSelect;
     }

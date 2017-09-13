@@ -28,13 +28,17 @@ export default class ListTags extends Component {
     }
 
     renderListTags = () => {
-        let { data } = this.props
+        let { data, onPress, isSeeAll } = this.props
         return (
             <View style={styles.listTags}>
                 {data.map(this.renderTag)}
-                <Text
-                    text={string.see_all}
-                    style={styles.textAll} />
+                {isSeeAll
+                    ? <Text
+                        onPress={() => onPress && onPress(undefined, undefined)}
+                        text={string.see_all}
+                        style={styles.textAll}
+                    />
+                    : null}
             </View>
         )
     }
@@ -50,7 +54,6 @@ export default class ListTags extends Component {
                     style={styles.name} />
                 {this.renderListTags()}
             </View >
-
         )
     }
 

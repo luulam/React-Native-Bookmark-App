@@ -38,12 +38,10 @@ const add = ({
 
 const addAll = (arr) => new Promise((resolve, reject) => {
     try {
-        let arrTags = []
         arr.forEach((element) => {
-            console.log('create addAll Tags', element)
-            arrTags.push(add({ name: element.name, color: element.color }))
+            add({ name: element.name, color: element.color })
         });
-        resolve(arrTags)
+        resolve(arr)
     } catch (e) {
         reject(e)
         console.error(e)

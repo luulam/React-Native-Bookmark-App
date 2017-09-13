@@ -6,7 +6,7 @@ import { Button, Text, Icon, InputText } from './'
 import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
 import moment from 'moment'
-import { ValidURL, Bookmark } from '../helper'
+import { ValidURL, Bookmark, Tag } from '../helper'
 import actions from '../redux/actions'
 
 class ListBookmarks extends Component {
@@ -26,14 +26,12 @@ class ListBookmarks extends Component {
         };
     }
 
-    _renderListTags = (item) => {
+    _renderListTags = (item, index) => {
+        let { edit } = this.state
         return (
             <View
-                style={styles.constantarrTagsItem}>
-                <Text
-                    fontSize={constants.font.sub}
-                    italic
-                    text={moment(new Date(item.timeCreate).getTime()).fromNow()} />
+                style={styles.constantarrTagsItem}
+            >
                 {item['tags'].map((v, i) => <Text
                     key={i}
                     text={` #${v.name}`}
@@ -46,6 +44,7 @@ class ListBookmarks extends Component {
         let { select, edit } = this.state
         return (
             <View>
+
                 {edit === index
                     ? <InputText
                         hintTop
@@ -58,11 +57,21 @@ class ListBookmarks extends Component {
                     : <Text
                         text={item.content}
                         fontSize={constants.font.sub} />}
+                {edit !== index
+                    ? <Text
+                        align='right'
+                        fontSize={constants.font.sub}
+                        italic
+                        text={moment(new Date(item.timeCreate).getTime()).fromNow()}
+                    />
+                    : null}
                 <View
                     style={styles.constantButton}>
                     <Icon
                         name={edit === index ? 'ios-done-all-outline' : 'ios-create-outline'}
-                        onPress={() => this._onPressEdit(item, index)} />
+                        onPress={() => {
+                            this._onPressEdit(item, index)
+                        }} />
                     <Icon
                         name='ios-trash-outline'
                         onPress={() => this.setState({
@@ -84,7 +93,8 @@ class ListBookmarks extends Component {
         return (
             <TouchableOpacity
                 disabled={edit === index}
-                activeOpacity={constants.opacity} style={styles.constantItem}
+                activeOpacity={constants.opacity}
+                style={styles.constantItem}
                 onPress={() => this.setState({ select: select === index ? undefined : index, edit: undefined })}
             >
                 {edit === index
@@ -100,11 +110,12 @@ class ListBookmarks extends Component {
                         bold
                         text={item.title.length === 0 ? item.content : item.title} />}
 
-                {this._renderListTags(item)}
+                {this._renderListTags(item, index)}
 
                 {select === index
                     ? this._renderSubBookmark(item, index)
                     : null}
+                {edit === undefined || edit === index ? null : <View style={styles.coverEdit} />}
             </TouchableOpacity>
         )
     }
@@ -112,12 +123,12 @@ class ListBookmarks extends Component {
     _keyExtractor = (item, index) => item.id;
 
     render() {
-        let { data } = this.props
+        let { data, nameTag } = this.props
         return (
             <View
                 style={styles.constant}>
                 <Text
-                    text={string.name_listbookmarks}
+                    text={nameTag ? `#${nameTag}` : string.name_listbookmarks}
                     bold
                     under
                     italic
@@ -189,6 +200,14 @@ const styles = StyleSheet.create({
     constantButton: {
         flexDirection: 'row',
         justifyContent: 'space-around'
+    },
+    coverEdit: {
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        position: 'absolute'
     }
 })
 

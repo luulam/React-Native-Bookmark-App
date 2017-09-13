@@ -5,6 +5,7 @@ import { Text, Header, Icon, Button, InputText, SelectTags, ModalCreateTag } fro
 import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
 import { Tag, Bookmark } from '../helper'
+import actions from '../redux/actions'
 class AddBookmark extends Component {
 
     constructor(props) {
@@ -91,10 +92,16 @@ class AddBookmark extends Component {
     _onVerify = () => {
         if (this.inputTitle.text().length === 0) {
             this.inputTitle.showError('Input title')
+            return false
         }
 
         if (this.inputContent.text().length === 0) {
             this.inputContent.showError('Input content')
+            return false
+        }
+
+        if (this.setlectTags.wrappedInstance.getTag()) {
+            this.props.showNotify('please add a Tag')
             return false
         }
         return true
@@ -105,14 +112,13 @@ class AddBookmark extends Component {
 
         Tag.addAll(this.setlectTags.wrappedInstance.getTag())
             .then((arr) => {
-
+                let arrTags = Tag.get().filter(tag => arr.filter(v => v.name === tag.name).length !== 0)
                 Bookmark.add({
                     content: this.inputContent.text(),
                     title: this.inputTitle.text(),
                     hide: false,
-                    tags: arr
+                    tags: arrTags
                 })
-
                 this.props.navigation.navigate('Home')
 
 
@@ -141,7 +147,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-
+        showNotify: (data) => actions.showNotify(dispatch)(data),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddBookmark)
