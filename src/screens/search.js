@@ -38,7 +38,7 @@ class Search extends Component {
 
         return (
             <ListTags
-                data={}
+                data={data}
                 onPress={(v, i) => {
                     this.props.navigation.navigate('Bookmarks', { name: v.name })
                 }}
@@ -49,7 +49,7 @@ class Search extends Component {
     render() {
         return (
             <View
-                style={styles.constant}
+                style={styles.containers}
             >
                 <Header >
 
@@ -59,7 +59,7 @@ class Search extends Component {
                         }}
                         autoFocus
                         hint='Search'
-                        styleConstant={styles.constantInput}
+                        styleConstant={styles.containersInput}
                         hideBottom />
                     <Icon
                         margin
@@ -95,11 +95,11 @@ class Search extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingTop: constants.statusBarHeight,
         flex: 1
     },
-    constantInput: {
+    containersInput: {
         flex: 1
     }
 })

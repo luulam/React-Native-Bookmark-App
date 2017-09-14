@@ -6,12 +6,14 @@ import { configs, constants, colors } from '../configs'
 import { Tag } from '../helper'
 
 class AllTags extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
             dataTags: []
         }
     }
+    
     _renderHeader = () => {
         return (
             <Header
@@ -38,7 +40,7 @@ class AllTags extends Component {
     render() {
         return (
             <View
-                style={styles.constant}
+                style={styles.containers}
             >
                 {this._renderHeader()}
                 {this._renderContent()}
@@ -56,20 +58,10 @@ class AllTags extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingTop: constants.statusBarHeight,
         flex: 1
     }
 })
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        state: state
-    }
-}
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        // showSnackBar: (data) => dispatch(showSnackBar(data))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(AllTags)
+export default AllTags

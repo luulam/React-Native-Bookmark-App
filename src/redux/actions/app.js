@@ -6,6 +6,7 @@ export const ADD_NOTIFY = 'ADD_NOTIFY'
 export const REMOVE_NOTIFY = 'REMOVE_NOTIFY'
 export const SHOW_DIALOG = 'SHOW_DIALOG'
 export const HIDE_DIALOG = 'HIDE_DIALOG'
+
 addNotify = (id, title) => ({
     type: ADD_NOTIFY,
     id: id,

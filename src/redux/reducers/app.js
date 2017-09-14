@@ -42,6 +42,7 @@ export default (state = INITIAL, action) => {
                     show: true
                 }
             })
+
         case HIDE_DIALOG:
             return Object.assign({}, state, {
                 dialog: {
@@ -51,6 +52,7 @@ export default (state = INITIAL, action) => {
                     show: false
                 }
             })
+            
         default:
             return state;
     }

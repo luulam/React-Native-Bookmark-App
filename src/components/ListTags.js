@@ -6,18 +6,15 @@ import { constants } from '../configs'
 import { string } from '../assets'
 import Realm from '../configs/realm'
 
-/**
- * @param {arr realm resuft} data 
- * @param {func} onPress
- */
-
 export default class ListTags extends Component {
+
     static propTypes = {
         data: PropTypes.any,
-        onPress: PropTypes.func
+        onPress: PropTypes.func,
+        isSeeAll: PropTypes.bool
     }
 
-    renderTag = (v, i) => {
+    _renderTag = (v, i) => {
         return <View
             key={i}
             style={styles.padding}>
@@ -27,11 +24,11 @@ export default class ListTags extends Component {
         </View>
     }
 
-    renderListTags = () => {
+    _renderListTags = () => {
         let { data, onPress, isSeeAll } = this.props
         return (
             <View style={styles.listTags}>
-                {data.map(this.renderTag)}
+                {data.map(this._renderTag)}
                 {isSeeAll
                     ? <Text
                         onPress={() => onPress && onPress(undefined, undefined)}
@@ -45,14 +42,14 @@ export default class ListTags extends Component {
 
     render() {
         return (
-            <View style={styles.constant}>
+            <View style={styles.containers}>
                 <Text
                     text={string.name_listtags}
                     bold
                     under
                     italic
                     style={styles.name} />
-                {this.renderListTags()}
+                {this._renderListTags()}
             </View >
         )
     }
@@ -64,7 +61,7 @@ export default class ListTags extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         marginVertical: constants.padVer,
     },
     listTags: {

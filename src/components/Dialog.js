@@ -20,10 +20,9 @@ class Dialog extends Component {
         }
     }
 
-
     _renderButton = () => {
         let { dialog } = this.props
-        return (<View style={styles.constantButton}>
+        return (<View style={styles.containersButton}>
             {dialog.button.map((v, i) => <Button
                 key={i}
                 width={constants.appWidth / 3}
@@ -37,11 +36,23 @@ class Dialog extends Component {
         let { dialog } = this.props
 
         return dialog.show
-            ? <View style={styles.constant}>
-                <View style={styles.constantBackground}>
-                    <Text text={dialog.title} bold style={styles.text} fontSize={constants.font.dialog} />
-                    <Text text={dialog.message} style={styles.text} fontSize={constants.font.dialog} />
+            ? <View
+                style={styles.containers}
+            >
+                <View
+                    style={styles.containersBackground}>
+                    <Text
+                        text={dialog.title}
+                        bold
+                        style={styles.text}
+                        fontSize={constants.font.dialog} />
+                    <Text
+                        text={dialog.message}
+                        style={styles.text}
+                        fontSize={constants.font.dialog} />
+
                     {this._renderButton()}
+
                 </View>
                 <KeyboardHandleView />
             </View>
@@ -51,7 +62,7 @@ class Dialog extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         bottom: 0,
         left: 0,
         right: 0,
@@ -62,12 +73,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
     },
-    constantBackground: {
+    containersBackground: {
         backgroundColor: 'white',
         padding: constants.padHor * 3,
         borderRadius: constants.borderRadius
     },
-    constantButton: {
+    containersButton: {
         flexDirection: 'row',
         justifyContent: 'space-around'
     },

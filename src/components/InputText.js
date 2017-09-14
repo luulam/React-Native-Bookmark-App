@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { TextInput, View, StyleSheet } from 'react-native';
 import { colors, constants } from '../configs'
 import { Text, Icon } from './'
 
 export default class InputText extends Component {
+    static propTypes = {
+        defaultValue: PropTypes.string,
+        hint: PropTypes.string,
+        maxLength: PropTypes.number,
+        style: PropTypes.any,
+        autoFocus: PropTypes.any,
+        hintTop: PropTypes.any,
+        styleConstant: PropTypes.any,
+        hideBottom: PropTypes.any,
+    }
 
     static defaultProps = {
         multiline: false
@@ -21,7 +32,7 @@ export default class InputText extends Component {
         let { hint, maxLength } = this.props;
         let { value } = this.state;
         return value.length > 0
-            ? <View style={styles.constantHint}>
+            ? <View style={styles.containersHint}>
                 <Text
                     text={hint}
                     color={colors.access}
@@ -76,7 +87,7 @@ export default class InputText extends Component {
         const { value } = this.state
         return (
             <View
-                style={[styles.constant, hideBottom ? null : styles.borderBottom, styleConstant,]}
+                style={[styles.containers, hideBottom ? null : styles.borderBottom, styleConstant,]}
             >
                 {hintTop ? this._renderHint() : null}
                 <TextInput
@@ -130,7 +141,7 @@ export default class InputText extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingHorizontal: constants.padHor,
         paddingVertical: constants.padVer,
         justifyContent: 'center'
@@ -139,7 +150,7 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.border,
         borderBottomWidth: constants.border
     },
-    constantHint: {
+    containersHint: {
         flexDirection: 'row',
         justifyContent: 'space-between'
     },

@@ -13,6 +13,7 @@ class ListBookmarks extends Component {
 
     static propTypes = {
         data: PropTypes.any,
+        nameTag: PropTypes.string
     }
 
     constructor(props) {
@@ -30,7 +31,7 @@ class ListBookmarks extends Component {
         let { edit } = this.state
         return (
             <View
-                style={styles.constantarrTagsItem}
+                style={styles.containersarrTagsItem}
             >
                 {item['tags'].map((v, i) => <Text
                     fontSize={constants.font.sub}
@@ -67,7 +68,7 @@ class ListBookmarks extends Component {
                     />
                     : null}
                 <View
-                    style={styles.constantButton}>
+                    style={styles.containersButton}>
                     <Icon
                         name={edit === index ? 'ios-done-all-outline' : 'ios-create-outline'}
                         onPress={() => {
@@ -95,7 +96,7 @@ class ListBookmarks extends Component {
             <TouchableOpacity
                 disabled={edit === index}
                 activeOpacity={constants.opacity}
-                style={styles.constantItem}
+                style={styles.containersItem}
                 onPress={() => this.setState({ select: select === index ? undefined : index, edit: undefined })}
             >
                 {edit === index
@@ -127,7 +128,7 @@ class ListBookmarks extends Component {
         let { data, nameTag } = this.props
         return (
             <View
-                style={styles.constant}>
+                style={styles.containers}>
                 <Text
                     text={nameTag ? `#${nameTag}` : string.name_listbookmarks}
                     bold
@@ -179,11 +180,11 @@ class ListBookmarks extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         flex: 1
     },
 
-    constantItem: {
+    containersItem: {
         backgroundColor: 'white',
         paddingVertical: constants.padVer,
         paddingHorizontal: constants.padVer,
@@ -194,11 +195,11 @@ const styles = StyleSheet.create({
         paddingLeft: constants.padHor * 2,
         paddingBottom: constants.padVer
     },
-    constantarrTagsItem: {
+    containersarrTagsItem: {
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
-    constantButton: {
+    containersButton: {
         flexDirection: 'row',
         justifyContent: 'space-around'
     },

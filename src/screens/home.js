@@ -30,7 +30,7 @@ class Home extends Component {
             <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('Search')}
                 activeOpacity={constants.opacity}
-                style={styles.constantSearch}>
+                style={styles.containersSearch}>
                 <Text
                     text={string.search_of_bookmark}
                     align='center' />
@@ -65,11 +65,12 @@ class Home extends Component {
             <TouchableOpacity
                 style={styles.fabAdd}
                 activeOpacity={constants.opacity}
-                onPress={() => this.onAddBookmark()}>
+                onPress={() => this._onAddBookmark()}
+            >
                 <Icon
                     color={colors.white}
                     name='ios-add-outline'
-                    onPress={() => this.onAddBookmark()} />
+                    onPress={() => this._onAddBookmark()} />
             </TouchableOpacity>
         )
     }
@@ -77,7 +78,7 @@ class Home extends Component {
     render() {
         return (
             <View
-                style={styles.constant}
+                style={styles.containers}
             >
                 {this._renderHeader()}
                 {this._renderSearch()}
@@ -112,17 +113,17 @@ class Home extends Component {
         Realm.removeAllListeners();
     }
 
-    onAddBookmark = () => {
+    _onAddBookmark = () => {
         this.props.navigation.navigate('AddBookmark')
     }
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingTop: constants.statusBarHeight,
         flex: 1
     },
-    constantSearch: {
+    containersSearch: {
         backgroundColor: colors.border,
         justifyContent: 'center',
         height: constants.navBarHeight

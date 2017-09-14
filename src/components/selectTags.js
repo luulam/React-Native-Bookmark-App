@@ -8,10 +8,6 @@ import { string } from '../assets'
 import { Tag } from '../helper'
 import update from 'immutability-helper';
 import actions from '../redux/actions'
-/**
- * @param {arr realm resuft} data 
- * @param {func} onPress
- */
 
 class ListTags extends Component {
     static propTypes = {
@@ -96,7 +92,7 @@ class ListTags extends Component {
     render() {
         let { tagsSelect, textInputTag } = this.state
         return (
-            <View style={styles.constant}>
+            <View style={styles.containers}>
                 <ModalCreateTag
                     ref={(component) => this.modal = component}
                     onHide={this._onHideModal}
@@ -124,7 +120,6 @@ class ListTags extends Component {
 
     _addSelect = (name, color) => {
         let { tagsSelect } = this.state
-        console.log(tagsSelect)
         if (tagsSelect.filter(v => v.name === name).length === 0) {
             this.setState({
                 tagsSelect: tagsSelect.concat({ name, color }),
@@ -153,7 +148,7 @@ class ListTags extends Component {
 
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         marginVertical: constants.padVer,
     },
     listTags: {

@@ -6,6 +6,7 @@ import { constants, colors, configs } from '../configs'
 import { string } from '../assets'
 import { Tag, Bookmark } from '../helper'
 import actions from '../redux/actions'
+
 class AddBookmark extends Component {
 
     constructor(props) {
@@ -80,7 +81,7 @@ class AddBookmark extends Component {
     render() {
         return (
             <View
-                style={styles.constant}
+                style={styles.containers}
             >
                 {this.renderHeader()}
                 {this.renderSelectTag()}
@@ -130,7 +131,7 @@ class AddBookmark extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingTop: constants.statusBarHeight, flex: 1
     },
     name: {
@@ -150,4 +151,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         showNotify: (data) => actions.showNotify(dispatch)(data),
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(AddBookmark)

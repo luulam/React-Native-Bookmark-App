@@ -43,8 +43,8 @@ let TextApp = ({
 }
 
 let styles = StyleSheet.create({
-    constant: {
-        // alignSelf: 'flex-start',
+    containers: {
+
     }
 })
 

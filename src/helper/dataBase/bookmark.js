@@ -11,6 +11,7 @@ import Realm from '../../configs/realm'
  * timeCreate: { type: 'string' },
  * timeUpdate: { type: 'string' },
  */
+
 import Tag from './tag'
 
 const get = () => {
@@ -65,7 +66,7 @@ const addAll = (arr) => new Promise((resolve, reject) => {
         resolve(arr)
     } catch (e) {
         reject(e)
-        console.error(e)
+        console.log(e)
     }
 })
 
@@ -86,7 +87,7 @@ const edit = (resuft, { title, content, hide, tags }) => {
             }
         })
     } catch (error) {
-        throw error
+        console.log(e)
     }
 }
 
@@ -96,7 +97,7 @@ const remove = (index) => {
             Realm.delete(get().filtered(`id = ${index}`))
         })
     } catch (e) {
-        console.error('remove', e)
+        console.log('remove', e)
     }
 }
 
@@ -106,7 +107,7 @@ const removeAll = () => {
             Realm.delete(get())
         })
     } catch (e) {
-        console.error('error', e)
+        console.log('error', e)
     }
 }
 

@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native'
 import { Header, ListBookmarks, Icon } from '../components'
 import { configs, constants, colors } from '../configs'
 import { Bookmark } from '../helper'
+
 class Bookmarks extends Component {
 
     constructor(props) {
@@ -40,7 +41,7 @@ class Bookmarks extends Component {
         console.log('state', this.props.navigation.state.params)
         return (
             <View
-                style={styles.constant}
+                style={styles.containers}
             >
                 {this._renderHeader()}
                 {this._renderListBookmarks()}
@@ -62,20 +63,10 @@ class Bookmarks extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingTop: constants.statusBarHeight,
         flex: 1
     }
 })
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        state: state
-    }
-}
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Bookmarks)
+export default Bookmarks

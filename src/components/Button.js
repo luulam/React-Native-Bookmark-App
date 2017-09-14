@@ -26,7 +26,7 @@ let ButtonApp = ({
             activeOpacity={constants.opacity}
             onPress={onPress}
             style={[
-                styles.constant,
+                styles.containers,
                 {
                     borderRadius: border ? constants.btnHeight / 2 : undefined,
                     borderWidth: border ? backgroundColor != colors.white ? 0 : constants.border : 0,
@@ -45,7 +45,7 @@ let ButtonApp = ({
 }
 
 let styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingHorizontal: constants.padHor,
         height: constants.btnHeight,
         alignItems: 'center',
@@ -54,7 +54,7 @@ let styles = StyleSheet.create({
         flexDirection: 'row',
         ...styleApp.shadow
     },
-    constantLeft: {
+    containersLeft: {
         flexDirection: 'row'
     }
 })

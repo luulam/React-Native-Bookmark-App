@@ -1,7 +1,6 @@
 import Tag from './dataBase/tag'
 import Bookmark from './dataBase/bookmark'
 
-
 export function ValidURL(str) {
     var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name

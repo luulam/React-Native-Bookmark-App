@@ -34,7 +34,7 @@ let IconApp = ({
 }
 
 let styles = StyleSheet.create({
-    constant: {
+    containers: {
         backgroundColor: 'transparent'
     },
     icon: {
@@ -51,7 +51,7 @@ IconApp.propTypes = {
 }
 
 IconApp.defaultProps = {
-    style: styles.constant,
+    style: styles.containers,
     name: 'ios-bug-outline',
     size: constants.icon,
     color: colors.text

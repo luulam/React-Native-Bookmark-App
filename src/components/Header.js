@@ -28,7 +28,7 @@ let HeaderApp = ({
                 />
                 : null}
             <View
-                style={styles.constantLeft}
+                style={styles.containersLeft}
             >
                 {children}
             </View>
@@ -37,7 +37,7 @@ let HeaderApp = ({
 }
 
 let styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingHorizontal: constants.padHor,
         height: constants.navBarHeight,
         alignItems: 'center',
@@ -46,7 +46,7 @@ let styles = StyleSheet.create({
         borderBottomWidth: constants.border,
         borderBottomColor: colors.border
     },
-    constantLeft: {
+    containersLeft: {
         flexDirection: 'row'
     }
 })
@@ -56,7 +56,7 @@ HeaderApp.propTypes = {
 }
 
 HeaderApp.defaultProps = {
-    style: styles.constant
+    style: styles.containers
 }
 
 

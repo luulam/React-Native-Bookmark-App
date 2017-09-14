@@ -6,6 +6,10 @@ import { colors, constants, configs, styleApp } from '../configs'
 import { array, string } from '../assets'
 
 class ModalCreateTag extends Component {
+    
+    static propTypes = {
+        onHide: PropTypes.func
+    }
 
     constructor(props) {
         super(props)
@@ -51,7 +55,7 @@ class ModalCreateTag extends Component {
             style={[{
                 backgroundColor: v,
             }, selectColor === i ? styles.borderSelectColor : null,
-            styles.constantColor]}
+            styles.containersColor]}
         >
             {selectColor === i
                 ? <Icon name='ios-checkmark-outline' />
@@ -61,14 +65,14 @@ class ModalCreateTag extends Component {
 
     _renderSelectColor = () => {
         let { arrColor } = this.state
-        return <View style={styles.constantArrColor}>
+        return <View style={styles.containersArrColor}>
             {arrColor.map(this._renderColor)}
         </View>
     }
 
     _renderControl = () => {
         return <View
-            style={styles.constantControl}
+            style={styles.containersControl}
         >
             <Button
                 title={string.ok}
@@ -83,7 +87,7 @@ class ModalCreateTag extends Component {
 
     _renderContent = () => {
         return <View
-            style={styles.constant}
+            style={styles.containers}
         >
             {this._renderheader()}
             {this._renderPreview()}
@@ -104,10 +108,9 @@ class ModalCreateTag extends Component {
                 onRequestClose={() => { }}
             >
                 <View
-                    style={styles.constantModal}>
+                    style={styles.containersModal}>
                     {this._renderContent()}
                 </View>
-                {/* <View style={{ height: 200 }} /> */}
                 <KeyboardHandleView />
             </Modal>
         )
@@ -134,34 +137,34 @@ class ModalCreateTag extends Component {
 }
 
 let styles = StyleSheet.create({
-    constantModal: {
+    containersModal: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    constant: {
+    containers: {
         margin: 2,
         backgroundColor: 'white',
         width: constants.appWidth,
         padding: 12,
         ...styleApp.shadow
     },
-    constantLeft: {
+    containersLeft: {
         flexDirection: 'row'
     },
-    constantArrColor: {
+    containersArrColor: {
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
-    constantColor: {
+    containersColor: {
         marginHorizontal: constants.padHor,
         marginVertical: constants.padVer,
         width: constants.icon,
         height: constants.icon,
         borderRadius: constants.icon / 2
     },
-    constantControl: {
+    containersControl: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginVertical: constants.padVer
@@ -171,16 +174,5 @@ let styles = StyleSheet.create({
         borderColor: 'rgba(0, 0, 0, 0.5)'
     }
 })
-
-ModalCreateTag.propTypes = {
-    title: PropTypes.string,
-}
-
-ModalCreateTag.defaultProps = {
-    style: styles.constant,
-    border: true,
-    backgroundColor: colors.white
-}
-
 
 export default ModalCreateTag

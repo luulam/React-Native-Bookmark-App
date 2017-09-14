@@ -1,4 +1,5 @@
 
 export default class {
-    static color = ['#D87373','#ECA162','#33A99A','#6648A1','#DB3882','#785D4E','#008080','#ff6666','#ffc3a0','#c0d6e4']
+    //row 600 material design
+    static color = ['#e53935', '#d81b60', '#8e24aa', '#5e35b1', '#3949ab', '#1e88e5', '#039be5', '#00acc1', '#00897b', '#43a047', '#7cb342', '#c0ca33', '#fdd835', '#ffb300', '#fb8c00', '#f4511e', '#6d4c41', '#546e7a']
 }

@@ -4,8 +4,8 @@ const { width, height } = Dimensions.get('window')
 const colors = {
     primary: '#edbbd0',
     secondary: '#B3D9CE',
-    bg_app: '#F7F7F7',
-    access: '#71C7B8',
+    bg_app: '#F5F5F6',
+    access: '#00897b',
     text: '#191919',
     text_light: 'white',
     disable: '#cccccc',
@@ -49,7 +49,9 @@ const styleApp = {
         elevation: 2
     }
 }
+
 export {
-    colors, constants,
+    colors,
+    constants,
     styleApp
 }

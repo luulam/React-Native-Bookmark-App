@@ -12,7 +12,7 @@ class AllTags extends Component {
     render() {
         return (
             <View
-                style={styles.constant}
+                style={styles.containers}
             >
                 <Header title='All Tags' />
 
@@ -22,7 +22,7 @@ class AllTags extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         paddingTop: constants.statusBarHeight,
         flex: 1
     }

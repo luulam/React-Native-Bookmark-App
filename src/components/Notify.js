@@ -25,10 +25,11 @@ class Notify extends Component {
             </View>
         )
     }
+    
     render() {
         let { notifys } = this.props
         return (
-            <View style={styles.constant}>
+            <View style={styles.containers}>
                 {this.props.notifys.map(this._renderNotify)}
             </View>
         )
@@ -36,7 +37,7 @@ class Notify extends Component {
 }
 
 const styles = StyleSheet.create({
-    constant: {
+    containers: {
         bottom: constants.padVer * 2,
         left: 0,
         right: 0,
