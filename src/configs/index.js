@@ -1,4 +1,4 @@
-import { constants, colors } from './theme'
+import { constants, colors, styleApp } from './theme'
 
 const configs = {
     max_input_tag: 32,
@@ -8,5 +8,5 @@ const configs = {
 }
 
 export {
-    configs, constants, colors
+    configs, constants, colors, styleApp
 }

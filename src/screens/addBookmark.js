@@ -100,7 +100,7 @@ class AddBookmark extends Component {
             return false
         }
 
-        if (this.setlectTags.wrappedInstance.getTag()) {
+        if (this.setlectTags.wrappedInstance.getTag().length === 0) {
             this.props.showNotify('please add a Tag')
             return false
         }

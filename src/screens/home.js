@@ -4,7 +4,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Realm from '../configs/realm'
 import { Tag, Bookmark } from '../helper'
 import { Text, Header, Icon, Button, ListTags, InputText, ModalCreateTag, ListBookmarks, KeyboardHandleView } from '../components'
-import { constants, colors } from '../configs'
+import { constants, colors, styleApp } from '../configs'
 import { string } from '../assets'
 import actions from '../redux/actions'
 
@@ -78,7 +78,7 @@ class Home extends Component {
                 style={styles.constant}
             >
                 {this.renderHeader()}
-                
+
                 {this.renderContent()}
                 {this.renderListBookmarks()}
                 {this.renderFabAdd()}
@@ -138,7 +138,8 @@ const styles = StyleSheet.create({
         height: constants.fab,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: constants.fab / 2
+        borderRadius: constants.fab / 2,
+        ...styleApp.shadow
     }
 })
 

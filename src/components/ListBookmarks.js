@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, StyleSheet, FlatList, TouchableOpacity, Share, Linking } from 'react-native'
 import { Button, Text, Icon, InputText } from './'
-import { constants, colors, configs } from '../configs'
+import { constants, colors, configs, styleApp } from '../configs'
 import { string } from '../assets'
 import moment from 'moment'
 import { ValidURL, Bookmark, Tag } from '../helper'
@@ -33,6 +33,7 @@ class ListBookmarks extends Component {
                 style={styles.constantarrTagsItem}
             >
                 {item['tags'].map((v, i) => <Text
+                    fontSize={constants.font.sub}
                     key={i}
                     text={` #${v.name}`}
                     color={v.color} />)}
@@ -110,7 +111,7 @@ class ListBookmarks extends Component {
                         bold
                         text={item.title.length === 0 ? item.content : item.title} />}
 
-                {this._renderListTags(item, index)}
+                {edit === index ? null : this._renderListTags(item, index)}
 
                 {select === index
                     ? this._renderSubBookmark(item, index)
@@ -179,15 +180,15 @@ class ListBookmarks extends Component {
 
 const styles = StyleSheet.create({
     constant: {
-        flex: 1,
-        marginHorizontal: constants.padHor,
-        marginVertical: constants.padVer,
+        flex: 1
     },
+
     constantItem: {
-        paddingBottom: constants.padVer,
-        marginVertical: constants.padVer,
-        borderBottomWidth: constants.border,
-        borderBottomColor: colors.colors
+        backgroundColor: 'white',
+        paddingVertical: constants.padVer,
+        paddingHorizontal: constants.padVer,
+        marginBottom: 1,
+        ...styleApp.shadow
     },
     name: {
         paddingLeft: constants.padHor * 2,

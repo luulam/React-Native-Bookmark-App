@@ -7,6 +7,7 @@ const colors = {
     bg_app: '#F7F7F7',
     access: '#71C7B8',
     text: '#191919',
+    text_light: 'white',
     disable: '#cccccc',
     border: '#d3d3d3',
     error: '#db2828',
@@ -39,6 +40,16 @@ const constants = {
     btnHeight: 38,
 }
 
+const styleApp = {
+    shadow: {
+        shadowOffset: { width: 0, height: 1 },
+        shadowRadius: 1,
+        shadowOpacity: .4,
+        shadowColor: '#000000',
+        elevation: 2
+    }
+}
 export {
-    colors, constants
+    colors, constants,
+    styleApp
 }

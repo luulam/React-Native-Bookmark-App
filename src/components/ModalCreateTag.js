@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Button, Header, InputText, Icon, KeyboardHandleView } from './'
-import { colors, constants, configs } from '../configs'
+import { colors, constants, configs, styleApp } from '../configs'
 import { array, string } from '../assets'
 
 class ModalCreateTag extends Component {
@@ -141,9 +141,11 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     constant: {
+        margin: 2,
         backgroundColor: 'white',
         width: constants.appWidth,
-        padding: 12
+        padding: 12,
+        ...styleApp.shadow
     },
     constantLeft: {
         flexDirection: 'row'

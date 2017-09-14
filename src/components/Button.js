@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Text } from './'
-import { colors, constants } from '../configs'
+import { colors, constants, styleApp } from '../configs'
 
 /**
  * 
@@ -51,7 +51,8 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'flex-start',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        ...styleApp.shadow
     },
     constantLeft: {
         flexDirection: 'row'

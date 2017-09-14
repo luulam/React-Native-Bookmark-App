@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import { Text } from './'
-import { colors, constants } from '../configs'
+import { colors, constants, styleApp } from '../configs'
 
 
 class Notify extends Component {
@@ -20,6 +20,7 @@ class Notify extends Component {
                 style={styles.border}
                 key={i}>
                 <Text
+                    color={colors.text_light}
                     text={v['title']} />
             </View>
         )
@@ -43,17 +44,18 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     border: {
-        backgroundColor: colors.border,
+        backgroundColor: colors.access,
         padding: constants.pad,
         marginBottom: constants.padVer,
         marginHorizontal: constants.padHor * 2,
         height: constants.btnHeight,
         borderRadius: constants.btnHeight / 2,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        ...styleApp.shadow
     },
     text: {
-        color: colors.text
+        color: colors.text_light
     }
 })
 

@@ -20,9 +20,11 @@ export default () => {
           translucent
           barStyle='dark-content'
           backgroundColor='transparent' />
+
+        <Navigation />
+        
         <Notify />
         <Dialog />
-        <Navigation />
       </View >
     </Provider >
   );

@@ -31,8 +31,13 @@ export default Navigation = StackNavigator(
         initialRouteName: 'Home',
         headerMode: 'none',
         cardStyle: {
-            shadowColor: 'transparent',
-            backgroundColor: 'transparent'
+            shadowOffset: { width: 0, height: 0 },
+            shadowRadius: 0,
+            shadowOpacity: 0,
+            shadowColor: '#000000',
+            elevation:2,
+
+            backgroundColor: 'transparent',
         },
 
     }

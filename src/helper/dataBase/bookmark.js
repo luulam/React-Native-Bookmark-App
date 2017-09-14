@@ -73,7 +73,7 @@ const edit = (resuft, { title, content, hide, tags }) => {
     try {
         Realm.write(() => {
             resuft.title = title || resuft.title
-            resuft.contens = content || resuft.content
+            resuft.content = content || resuft.content
             resuft.hide = hide || resuft.hide
             resuft.timeUpdate = new Date().toString()
             if (tags) {
