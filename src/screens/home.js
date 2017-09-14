@@ -18,25 +18,27 @@ class Home extends Component {
         }
     }
 
-    renderHeader = () => {
+    _renderHeader = () => {
         return (
             <Header
                 title='Home' />
         )
     }
 
-    renderSearch = () => {
+    _renderSearch = () => {
         return (
-            <View
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Search')}
+                activeOpacity={constants.opacity}
                 style={styles.constantSearch}>
                 <Text
                     text={string.search_of_bookmark}
                     align='center' />
-            </View>
+            </TouchableOpacity>
         )
     }
 
-    renderContent = () => {
+    _renderContent = () => {
         const { dataTags } = this.state
         return (
             <ListTags
@@ -51,14 +53,14 @@ class Home extends Component {
                 }} />
         )
     }
-    renderListBookmarks = () => {
+    _renderListBookmarks = () => {
         const { dataBookmarks } = this.state
         return (
             <ListBookmarks data={dataBookmarks} />
         )
     }
 
-    renderFabAdd = () => {
+    _renderFabAdd = () => {
         return (
             <TouchableOpacity
                 style={styles.fabAdd}
@@ -77,37 +79,33 @@ class Home extends Component {
             <View
                 style={styles.constant}
             >
-                {this.renderHeader()}
-
-                {this.renderContent()}
-                {this.renderListBookmarks()}
-                {this.renderFabAdd()}
+                {this._renderHeader()}
+                {this._renderSearch()}
+                {this._renderContent()}
+                {this._renderListBookmarks()}
+                {this._renderFabAdd()}
                 <KeyboardHandleView />
             </View>
         )
     }
 
     componentDidMount() {
-        let arrTagsDB = Tag.get();
-        let arrBookmarksDB = Bookmark.get();
-
-        arrTagsDB.addListener((collection, changes) => {
+        Tag.get().addListener((collection, changes) => {
             this.setState({
-                dataTags: collection
+                dataTags: Tag.get()
             })
         });
 
-        arrBookmarksDB.addListener((collection, changes) => {
+        Bookmark.get().addListener((collection, changes) => {
             this.setState({
-                dataBookmarks: collection
+                dataBookmarks: Bookmark.get()
             })
         });
         //first add data for list
         this.setState({
-            dataTags: arrTagsDB,
-            dataBookmarks: arrBookmarksDB
+            dataTags: Tag.get(),
+            dataBookmarks: Bookmark.get()
         })
-
     }
 
     componentWillUnmount() {

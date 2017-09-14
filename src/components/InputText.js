@@ -70,12 +70,13 @@ export default class InputText extends Component {
             autoFocus,
             hintTop,
             styleConstant,
-            maxLength
+            maxLength,
+            hideBottom
         } = this.props
         const { value } = this.state
         return (
             <View
-                style={[styles.constant, styleConstant]}
+                style={[styles.constant, hideBottom ? null : styles.borderBottom, styleConstant,]}
             >
                 {hintTop ? this._renderHint() : null}
                 <TextInput
@@ -132,6 +133,9 @@ const styles = StyleSheet.create({
     constant: {
         paddingHorizontal: constants.padHor,
         paddingVertical: constants.padVer,
+        justifyContent: 'center'
+    },
+    borderBottom: {
         borderBottomColor: colors.border,
         borderBottomWidth: constants.border
     },

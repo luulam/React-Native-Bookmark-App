@@ -8,7 +8,7 @@ import Home from '../screens/home'
 import AddBookmark from '../screens/addBookmark'
 import AllTags from '../screens/allTags'
 import Bookmarks from '../screens/bookmarks'
-
+import Search from '../screens/search'
 export default Navigation = StackNavigator(
     {
         Home: {
@@ -25,6 +25,9 @@ export default Navigation = StackNavigator(
         },
         Bookmarks: {
             screen: Bookmarks
+        },
+        Search: {
+            screen: Search
         }
     },
     {
@@ -35,7 +38,7 @@ export default Navigation = StackNavigator(
             shadowRadius: 0,
             shadowOpacity: 0,
             shadowColor: '#000000',
-            elevation:2,
+            elevation: 2,
 
             backgroundColor: 'transparent',
         },

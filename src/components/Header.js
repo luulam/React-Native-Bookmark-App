@@ -17,14 +17,19 @@ let HeaderApp = ({
 }) => {
     return (
         <View
-            style={style}>
-            <Text
-                align='center'
-                text={title}
-                fontSize={constants.font.header}
-                bold />
+            style={style}
+        >
+            {title
+                ? <Text
+                    align='center'
+                    text={title}
+                    fontSize={constants.font.header}
+                    bold
+                />
+                : null}
             <View
-                style={styles.constantLeft}>
+                style={styles.constantLeft}
+            >
                 {children}
             </View>
         </View>
