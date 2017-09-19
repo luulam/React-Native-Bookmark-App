@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, Platform } from 'react-native';
 import { colors, constants } from '../configs'
 import { Text, Icon } from './'
 
@@ -24,7 +24,8 @@ export default class InputText extends Component {
         super(props)
         this.state = {
             value: this.props.defaultValue || '',
-            error: undefined
+            error: undefined,
+            height: 0
         }
     }
 
@@ -84,7 +85,7 @@ export default class InputText extends Component {
             maxLength,
             hideBottom
         } = this.props
-        const { value } = this.state
+        const { value, height } = this.state
         return (
             <View
                 style={[styles.containers, hideBottom ? null : styles.borderBottom, styleConstant,]}
@@ -103,8 +104,11 @@ export default class InputText extends Component {
                     onFocus={this._onFocus}
                     style={{
                         fontSize: constants.font.nomal,
-                        ...style
+                        ...style,
+                        paddingRight: constants.font.nomal,
+                        height: height
                     }}
+                    onContentSizeChange={this._onContentSizeChange}
                 />
                 {this._renderError()}
                 {this._renderRemoveAll()}
@@ -115,9 +119,17 @@ export default class InputText extends Component {
     _onFocus = () => {
         this.setState({ error: undefined })
     }
+
     _handRemoveAllText = () => {
         this.setState({ value: '' });
         this.props.onChangeText && this.props.onChangeText('');
+    }
+
+    _onContentSizeChange = (event) => {
+        let height = event.nativeEvent.contentSize.height
+        let { onContentSizeChange } = this.props
+        if (Platform.OS === 'android') this.setState({ height })
+        onContentSizeChange && onContentSizeChange(event)
     }
 
     _onChangeText = (text) => {

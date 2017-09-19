@@ -53,6 +53,7 @@ class ModalCreateTag extends Component {
             activeOpacity={constants.opacity}
             onPress={() => this.setState({ selectColor: i })}
             style={[{
+                ...styleApp.shadow,
                 backgroundColor: v,
             }, selectColor === i ? styles.borderSelectColor : null,
             styles.containersColor]}

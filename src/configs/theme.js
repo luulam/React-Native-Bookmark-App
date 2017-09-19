@@ -46,7 +46,7 @@ const styleApp = {
         shadowRadius: 1,
         shadowOpacity: .4,
         shadowColor: '#000000',
-        elevation: 2
+        elevation: 4
     }
 }
 
