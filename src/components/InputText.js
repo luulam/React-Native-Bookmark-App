@@ -25,7 +25,7 @@ export default class InputText extends Component {
         this.state = {
             value: this.props.defaultValue || '',
             error: undefined,
-            height: 0
+            height: 19.5
         }
     }
 
@@ -128,7 +128,7 @@ export default class InputText extends Component {
     _onContentSizeChange = (event) => {
         let height = event.nativeEvent.contentSize.height
         let { onContentSizeChange } = this.props
-        if (Platform.OS === 'android') this.setState({ height })
+        this.setState({ height })
         onContentSizeChange && onContentSizeChange(event)
     }
 
@@ -136,6 +136,7 @@ export default class InputText extends Component {
         this.setState({ value: text });
         this.props.onChangeText && this.props.onChangeText(text);
     }
+
     /**
      * {string} @return 'curent text '
      */
