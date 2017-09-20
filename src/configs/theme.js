@@ -4,13 +4,14 @@ const { width, height } = Dimensions.get('window')
 const colors = {
     primary: '#edbbd0',
     secondary: '#B3D9CE',
-    bg_app: '#F5F5F6',
+    bg_app: '#F1F6F8',
     access: '#00897b',
     text: '#191919',
     text_light: 'white',
     disable: '#cccccc',
     border: '#d3d3d3',
     error: '#db2828',
+    header: 'white',
     green: '#00551e',
     brown: '#693504',
     red: '#db2828',
@@ -36,14 +37,14 @@ const constants = {
         header: 32,
     },
     fab: 48,
-    icon: 36,
+    icon: 42,
     btnHeight: 38,
 }
 
 const styleApp = {
     shadow: {
         shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 1,
+        shadowRadius: 2,
         shadowOpacity: .4,
         shadowColor: '#000000',
         elevation: 4

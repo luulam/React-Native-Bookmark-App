@@ -18,13 +18,15 @@ let ButtonApp = ({
     onPress,
     disable,
     children,
-    width
+    width,
+    onLongPress
 }) => {
     return (
         <TouchableOpacity
             disabled={disable}
             activeOpacity={constants.opacity}
             onPress={onPress}
+            onLongPress={onLongPress}
             style={[
                 styles.containers,
                 {

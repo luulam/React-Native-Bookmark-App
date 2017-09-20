@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Keyboard } from 'react-native';
 import { Text, Button, KeyboardHandleView } from './'
 import { colors, constants } from '../configs'
 
@@ -30,6 +30,13 @@ class Dialog extends Component {
                 onPress={v.onPress}
             />)}
         </View>)
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.dialog && nextProps.dialog.show) {
+            Keyboard.dismiss()
+        }
+        return true
     }
 
     render() {

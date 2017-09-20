@@ -96,7 +96,6 @@ class Search extends Component {
 
 const styles = StyleSheet.create({
     containers: {
-        paddingTop: constants.statusBarHeight,
         flex: 1
     },
     containersInput: {

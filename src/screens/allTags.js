@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native'
-import { Header, Icon, ListTags } from '../components'
+import { Header, Icon, ListTags, Text } from '../components'
 import { configs, constants, colors } from '../configs'
 import { Tag } from '../helper'
-
+import { string } from '../assets'
 class AllTags extends Component {
 
     constructor(props) {
@@ -13,7 +13,7 @@ class AllTags extends Component {
             dataTags: []
         }
     }
-    
+
     _renderHeader = () => {
         return (
             <Header
@@ -43,6 +43,7 @@ class AllTags extends Component {
                 style={styles.containers}
             >
                 {this._renderHeader()}
+                <Text text={string.info_remove_tags} italic style={{ marginHorizontal: 12 }} />
                 {this._renderContent()}
             </View>
         )
@@ -51,6 +52,12 @@ class AllTags extends Component {
     componentDidMount() {
         let arrTagsDB = Tag.get().sorted('name');
         //first add data for list
+        Tag.get().addListener((collection, changes) => {
+            this.setState({
+                dataTags: Tag.get().sorted('name')
+            })
+        });
+
         this.setState({
             dataTags: arrTagsDB,
         })
@@ -59,7 +66,6 @@ class AllTags extends Component {
 
 const styles = StyleSheet.create({
     containers: {
-        paddingTop: constants.statusBarHeight,
         flex: 1
     }
 })

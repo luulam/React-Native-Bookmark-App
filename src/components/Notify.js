@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Keyboard } from 'react-native';
 import { Text } from './'
 import { colors, constants, styleApp } from '../configs'
 
@@ -25,7 +25,14 @@ class Notify extends Component {
             </View>
         )
     }
-    
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.notifys && nextProps.notifys.length > 0) {
+            Keyboard.dismiss()
+        }
+        return true
+    }
+
     render() {
         let { notifys } = this.props
         return (

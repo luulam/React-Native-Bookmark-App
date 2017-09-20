@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native'
 import { Text } from './'
-import { colors, constants } from '../configs'
+import { colors, constants, styleApp } from '../configs'
 
 /**
  * 
@@ -38,13 +38,15 @@ let HeaderApp = ({
 
 let styles = StyleSheet.create({
     containers: {
+        paddingTop: constants.statusBarHeight,
+        backgroundColor: colors.header,
         paddingHorizontal: constants.padHor,
-        height: constants.navBarHeight,
+        marginBottom: constants.padHor,
+        height: constants.navBarHeight + constants.statusBarHeigh,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderBottomWidth: constants.border,
-        borderBottomColor: colors.border
+        ...styleApp.shadow
     },
     containersLeft: {
         flexDirection: 'row'

@@ -153,6 +153,7 @@ class ListBookmarks extends Component {
                 title: string.ok, onPress: () => {
                     Bookmark.remove(item.id);
                     this.props.hideDialog();
+                    this.props.showNotify(string.remove_bookmark_success)
                 }
             },
             { title: string.canner, onPress: () => this.props.hideDialog() }

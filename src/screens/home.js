@@ -120,7 +120,6 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     containers: {
-        paddingTop: constants.statusBarHeight,
         flex: 1
     },
     containersSearch: {

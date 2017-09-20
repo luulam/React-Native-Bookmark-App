@@ -22,7 +22,7 @@ let IconApp = ({
             activeOpacity={constants.opacity}
             onPress={onPress}
             style={[style, {
-                margin: margin ? constants.pad : undefined
+                marginHorizontal: margin ? constants.padHor : undefined
             }]}>
             <Icon
                 style={styles.icon}

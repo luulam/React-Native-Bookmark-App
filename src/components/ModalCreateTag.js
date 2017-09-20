@@ -6,7 +6,7 @@ import { colors, constants, configs, styleApp } from '../configs'
 import { array, string } from '../assets'
 
 class ModalCreateTag extends Component {
-    
+
     static propTypes = {
         onHide: PropTypes.func
     }
@@ -55,6 +55,7 @@ class ModalCreateTag extends Component {
             style={[{
                 ...styleApp.shadow,
                 backgroundColor: v,
+                alignSelf: 'center'
             }, selectColor === i ? styles.borderSelectColor : null,
             styles.containersColor]}
         >
@@ -145,10 +146,9 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     containers: {
-        margin: 2,
         backgroundColor: 'white',
         width: constants.appWidth,
-        padding: 12,
+        paddingBottom: constants.padVer,
         ...styleApp.shadow
     },
     containersLeft: {
@@ -156,7 +156,8 @@ let styles = StyleSheet.create({
     },
     containersArrColor: {
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     containersColor: {
         marginHorizontal: constants.padHor,

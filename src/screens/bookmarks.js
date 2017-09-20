@@ -53,7 +53,12 @@ class Bookmarks extends Component {
         let name = this.props.navigation.state.params.name
 
         let arrBookmarksDB = Bookmark.get().filter(bookmark => bookmark.tags.filter(v => v.name === name).length !== 0);
-
+        
+        Bookmark.get().addListener((collection, changes) => {
+            this.setState({
+                dataBookmarks: Bookmark.get().filter(bookmark => bookmark.tags.filter(v => v.name === name).length !== 0)
+            })
+        });
         //first add data for list
         this.setState({
             nameTag: name,
@@ -64,7 +69,6 @@ class Bookmarks extends Component {
 
 const styles = StyleSheet.create({
     containers: {
-        paddingTop: constants.statusBarHeight,
         flex: 1
     }
 })

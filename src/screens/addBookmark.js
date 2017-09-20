@@ -33,7 +33,7 @@ class AddBookmark extends Component {
                 <Icon
                     margin
                     name='ios-close-outline'
-                    onPress={() => this.props.navigation.goBack()} />
+                    onPress={() => this._onBack()} />
             </Header>
         )
     }
@@ -89,7 +89,22 @@ class AddBookmark extends Component {
             </View>
         )
     }
+    _onBack = () => {
+        if (this._onVerify()) {
+            this.props.showDialog(string.warning, string.warning_add_bookmark_exist, [
+                {
+                    title: string.ok, onPress: () => {
+                        this.props.hideDialog()
+                        this.props.navigation.goBack()
+                    }
+                },
+                { title: string.canner, onPress: () => this.props.hideDialog() }
+            ])
+        } else {
+            this.props.navigation.goBack()
+        }
 
+    }
     _onVerify = () => {
         if (this.inputTitle.text().length === 0) {
             this.inputTitle.showError('Input title')
@@ -102,7 +117,7 @@ class AddBookmark extends Component {
         }
 
         if (this.setlectTags.wrappedInstance.getTag().length === 0) {
-            this.props.showNotify('please add a Tag')
+            this.props.showNotify('Please add a Tag')
             return false
         }
         return true
@@ -132,7 +147,7 @@ class AddBookmark extends Component {
 
 const styles = StyleSheet.create({
     containers: {
-        paddingTop: constants.statusBarHeight, flex: 1
+        flex: 1
     },
     name: {
         paddingLeft: constants.padHor * 2,
@@ -149,6 +164,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         showNotify: (data) => actions.showNotify(dispatch)(data),
+        showDialog: (title, message, button) => actions.showDialog(dispatch)(title, message, button),
+        hideDialog: () => actions.hideDialog(dispatch)
     }
 }
 
