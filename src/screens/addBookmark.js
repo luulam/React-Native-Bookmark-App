@@ -108,7 +108,6 @@ class AddBookmark extends Component {
     _onVerify = () => {
         if (this.inputTitle.text().length === 0) {
             this.inputTitle.showError('Input title')
-            return false
         }
 
         if (this.inputContent.text().length === 0) {
