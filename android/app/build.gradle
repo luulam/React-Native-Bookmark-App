@@ -94,7 +94,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.bookmark"
+        applicationId "com.luulam.bookmark"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -106,10 +106,10 @@ android {
     signingConfigs {
         release {
             if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE_TEST)
-                storePassword MYAPP_RELEASE_STORE_PASSWORD_TEST
-                keyAlias MYAPP_RELEASE_KEY_ALIAS_TEST
-                keyPassword MYAPP_RELEASE_KEY_PASSWORD_TEST
+                storeFile file(LUULAM_RELEASE_STORE_FILE)
+                storePassword LUULAM_RELEASE_STORE_PASSWORD
+                keyAlias LUULAM_RELEASE_KEY_ALIAS
+                keyPassword LUULAM_RELEASE_KEY_PASSWORD
             }
         }
     }

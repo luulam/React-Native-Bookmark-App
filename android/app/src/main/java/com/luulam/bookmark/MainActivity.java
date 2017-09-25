@@ -1,4 +1,4 @@
-package com.bookmark;
+package com.luulam.bookmark;
 
 import com.facebook.react.ReactActivity;
 
